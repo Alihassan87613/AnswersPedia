@@ -1,0 +1,152 @@
+﻿@section Header
+{
+    @model StudentHelpp.Models.ViewModelStudent
+}
+@{
+    ViewBag.Title="Edit Question";
+    Layout = "~/Views/Shared/Question.cshtml";
+}
+@section Home{
+    <li><a href="@Url.Action("StudentAcount", "Student")">Home</a></li>    
+    }
+@section UserName
+{
+    @ViewData["UserName"]    
+}
+@section btn
+{
+    <li><a href="@Url.Action("LogOut", "STLogIn")">Log Out</a></li>
+}
+@section quest
+{
+          <li id="New_Quest"><a onclick="Redirect()">Post Question</a></li>
+          <script>
+              var points = @ViewData["Total_Points"]
+              function Redirect() {
+
+                  if (points < 10) {
+                      window.location = "/Payment/PaymentAcount";
+                  }
+                  else {
+                      window.location = "/Student/PostQuestion";
+                  }
+              }
+      </script>
+
+}
+@section Profile
+{
+      <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>
+}
+@section Prfile
+{
+    <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section Acount
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("PostedQuestion","Student")">Questions</a></li>
+}
+@section Notification
+{
+    <div class="colm">
+       <label  class="headd">
+          Inbox
+       </label>
+       <br>
+       <label class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["QuestionCnt"])</span>
+           Questions
+       </label>
+       <br>
+       <label  class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["TotalPoints"])</span>
+           Points
+       </label>
+       
+    </div>       
+}
+
+<link href="~/Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.8.20.js"></script>
+  <link href="~/CSS/PostQuest.css" rel="stylesheet" />
+  <script src="~/ckeditor/ckeditor.js"></script>
+  <script src="~/ckeditor/adapters/jquery.js"></script>
+  
+<div class="col-md-12">
+    <div class="col-md-11"> 
+
+        <div class="modal-header">
+            <h3 class="modal-title" style="color:#32bd32 ">Edit Question</h3>
+	    </div>
+
+                    
+            @using (Html.BeginForm("EditQuestion", "Student", new { QuestId = Model.stu_Question.S_Quest_Id }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="lbl">
+                  @Html.Label("Subject")
+                </div>
+                <div class="row">
+                  @for(var i=0; i <  Model.student_subject.Count() ; i++  )
+                  {  
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(model => model.student_subject[i].Checked, new { @class = "Checkbox" })  
+                        @Html.DisplayFor(model => model.student_subject[i].Subject_Name, new { style="color:black;"})  
+                    </div>
+                  } 
+                </div> 
+                <div class="lbl">
+                        @Html.Label("Title")
+                </div>
+                <div class="row">
+                    @*<input id="Pwdd" type="text" name="stu_Question.S_Title" class="email2" placeholder="Enter Title here..." />*@
+                    @Html.TextBoxFor(model => model.stu_Question.S_Title, new { @class="email2",placeholder = "Enter Question title here..." })
+                    @Html.ValidationMessageFor(model => model.stu_Question.S_Title)
+                </div>
+
+                <div class="row">
+                    <textarea class="ckeditor" name="stu_Question.S_Question" id="editor1" rows="10"></textarea>
+                </div>                
+                
+                <div class="editor-label">
+                    @Html.Label("New End Date For Question")
+                </div>
+                <div class="editor-field">
+                    @*<input type="text" id="datepicker">*@
+                    @Html.EditorFor(model => model.stu_Question.S_Quest_End_Date, new { @class = "email2" ,id="datepicker"})
+                    @Html.ValidationMessageFor(model => model.stu_Question.S_Quest_End_Date)
+                </div>
+                  <script>
+                      $(function () {
+                          $("#datepicker").datepicker();
+                      });
+                  </script>
+                 <div class="editor-label">
+                    @Html.Label("Points Offered")
+                </div>  
+               
+                <div class="editor-field">
+                    @Html.DropDownList("stu_Question.S_Points_Offered", new List<SelectListItem>{
+                    new SelectListItem{Text="10 Points" , Value="10",},
+                    new SelectListItem{Text="15 Points" , Value="15"},
+                    new SelectListItem{Text="20 Points" , Value="20"},
+                    new SelectListItem{Text="25 Points" , Value="25"},
+                
+               }, "Points", new { @class= "style"})
+                    @Html.ValidationMessageFor(model => model.stu_Question.S_Points_Offered)
+                </div>
+            
+                <input class="btn btn-default border-radius custom-button" type="submit" value="Edit Your Question" />
+                                        
+            }
+         </div>
+      </div>

@@ -1,0 +1,346 @@
+﻿@model StudentHelpp.Models.ViewModellOFALL
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home-AnswersPedia</title>
+
+      <link href="~/Content/bootstrap.css" rel="stylesheet" />
+      <link href="~/Content/font-awesome.css" rel="stylesheet" />
+                  
+
+      
+      <link href="~/CSS/owl.carousel.css" rel="stylesheet" />
+      <link href="~/CSS/owl.theme.css" rel="stylesheet" />
+      <link href="~/CSS/Home.css" rel="stylesheet" />
+      <link href="~/CSS/main.css" rel="stylesheet" />
+
+      <link href="~/CSS/style.css" rel="stylesheet" />
+      <link href="~/CSS/responsive.css" rel="stylesheet" />    
+
+
+      <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+
+ 
+
+
+      <script src="~/Scripts/jquery-2.1.4.js"></script>
+      <script src="~/Scripts/bootstrap.js"></script>
+      <script src="~/Scripts/modernizr.custom.js"></script>
+      <script src="~/Scripts/SmoothScroll.js"></script>
+      <script src="~/Scripts/jquery.isotope.js"></script>
+      <script src="~/Scripts/owl.carousel.js"></script>
+      <script src="~/Scripts/main.js"></script>
+      <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+      <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation
+    ==========================================-->
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+ 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">AnswersPedia</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#tf-home" class="page-scroll">Home</a></li>
+            <li><a href="#tf-about" class="page-scroll">About</a></li>
+            <li><a href="#tf-team" class="page-scroll">Team</a></li>
+            <li><a href="#tf-services" class="page-scroll">Services</a></li>
+            <li><a href="#tf-works" class="page-scroll">Questions</a></li>
+            <li><a href="#tf-contact" class="page-scroll">Contact</a></li>
+            <li><a href="@Url.Action("SignUp","Home")" class="header-link-signup text-uppercase" id="signup" >Sign up</a></li>
+            <li><a href="@Url.Action("Login","STLogIn")" class="header-link-login text-uppercase">Login</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- Home Page
+    ==========================================-->
+    <div id="tf-home" class="text-center">
+        <div class="overlay">
+            <div class="content">
+                <h1>Welcome on <strong><span class="color">AnswersPedia</span></strong></h1>
+                <input type="submit" align="centre" value="Ask A Question" class="btn1 btn1-cc">
+                
+            </div>
+            <a href="#tf-about" class="fa fa-angle-down page-scroll"></a>
+        </div>
+    </div>
+
+    <!-- About Us Page
+    ==========================================-->
+    <div id="tf-about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="~/images/02.png" class="img-responsive">
+                </div>
+                <div class="col-md-6">
+                    <div class="about-text">
+                        <div class="section-title">
+                            <h4>About us</h4>
+                            <h2>Some words <strong>about us</strong></h2>
+                            <hr>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p class="intro">We love to provide best facility to our users. We love to provide bes solution to our Students. A platform for Students for their problem solution.</p>
+                        <ul class="about-list">
+                            <li>
+                                <span class="fa fa-dot-circle-o"></span>
+                                <strong>Mission</strong> - <em>Deliver uniqueness and quality Solution</em>
+                            </li>
+                            <li>
+                                <span class="fa fa-dot-circle-o"></span>
+                                <strong>Skills</strong> - <em>Delivering fast and excellent Answers</em>
+                            </li>
+                            <li>
+                                <span class="fa fa-dot-circle-o"></span>
+                                <strong>Users</strong> - <em>Satisfied Users thanks to our experience</em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Page
+    ==========================================-->
+    <div id="tf-team" class="text-center">
+        <div class="overlay">
+            <div class="container">
+                <div class="section-title center">
+                    <h2>Meet <strong>our team</strong></h2>
+                    <div class="line">
+                        <hr>
+                    </div>
+                </div>
+
+                <div id="team" align="centre" class="owl-carousel owl-theme row">
+                    <div class="item" style="margin-left:80px">
+                        <div class="thumbnail">
+                            <img src="~/images/team/01.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Ali Hassan</h3>
+                                <p>CEO / Founder</p>
+                                <p>Do not seek to change what has come before. Seek to create that which has not.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="thumbnail">
+                            <img src="~/images/team/02.jpg" alt="..." class="img-circle team-img">
+                            <div class="caption">
+                                <h3>Ahmad Ali</h3>
+                                <p>Partner</p>
+                                <p>Do not seek to change what has come before. Seek to create that which has not.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section
+    ==========================================-->
+    <div id="tf-services" class="text-center">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Take a look at <strong>our services</strong></h2>
+                <div class="line">
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+                <small><em>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</em></small>
+            </div>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 service">
+                    <i class="fa fa-task"></i>
+                    <h4><strong>Home Works</strong></h4>
+                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                </div>
+
+                <div class="col-md-3 col-sm-6 service">
+                    <i class="fa fa-question"></i>
+                    <h4><strong>Questions</strong></h4>
+                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                </div>
+
+                <div class="col-md-3 col-sm-6 service">
+                    <i class="fa fa-task"></i>
+                    <h4><strong>Assignments</strong></h4>
+                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                </div>
+
+                <div class="col-md-3 col-sm-6 service">
+                    <i class="fa fa-task"></i>
+                    <h4><strong>Short Project</strong></h4>
+                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     
+      <!-- Search Section
+    ==========================================-->
+      <section class="tour section-wrapper container">
+          <h2 class="section-title">
+			Find Questions
+		</h2>
+		<p class="section-subtitle">
+			Type your Question here
+		</p>
+
+          <div class="row" style="margin-left:10%; height:500px" align="center">
+			    <div class="col-md-7 col-sm-6" style="height:500px">  
+                    <div class="input-group" style="height:500px">
+                        <input type="text" class="" name="S_Title" id="S_Title"/>
+                   </div>
+                </div>
+			    <div class="col-md-4" style="height:500px">
+                    <input type="submit" class="btn btn-default border-radius custom-button" id="Serc" value="Search" />
+                </div>
+          </div>
+        
+      </section>
+      <style>
+          .ui-autocomplete {z-index:1000}
+      </style>
+      <script type="text/javascript">
+          $(function (){
+              $("#S_Title").autocomplete({
+                  source: function (request, response) {
+                      $.ajax({
+                          url: "/Home/search_Quest",
+                          type: "POST",
+                          dataType: "json",
+                          data: { Quest: request.term },
+                          success: function (data) {
+                              response($.map(data, function (item) {
+
+                                  return { label: item.S_Title , value:item.S_Title};
+                              }))
+
+                          }
+                      })
+                  },
+                  messages: {
+                      noResults: "No Result Found", results: "No Result Found"
+                  }
+              });
+        });
+    </script>
+      <div class="col-sm-12">
+        <div class="col-xs-11">
+			<h2 class="text-center">Recent Questions</h2>
+		</div>
+        <table class="table" >
+            <thead>
+              <tr>
+                <th class="Name">Student Name</th>
+                <th class="Quest_Title">Question Title</th>
+                <th class="time">Last Date</th>
+                <th class="Points">Points</th>
+              </tr>
+            </thead>
+            <tbody id="HideTable">
+            @{
+                if (Model.list != null){
+              for (int k = 0; k < Model.list.Count; k++ )
+              {
+                <tr data-question-id="153552" class="odd rowEntry">
+                <td class="imgGridColumn padding-left-l no-mobile-display col-sm-2">
+                   @Model.list[k].stu_Question.S_UserName
+                 </td>
+                 <td class="blankColumnLeft col-sm-8">                    
+                    <div class="titleGridColumn title-mobile col-sm-10">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <a href="@Url.Action("ShowQuestionToAnonymous", "Home", new { QuestId=Model.list[k].stu_Question.S_Quest_Id , title=Model.list[k].stu_Question.S_Title})"><span class="heavy-text">@Model.list[k].stu_Question.S_Title </span></a>
+                            </div>
+                        </div>
+                    </div>
+                 </td>
+                 <td class="dueGridColumn padding-right-l no-mobile-display col-sm-2">
+                    <div>
+                        <span class="due-date-text">@Model.list[k].stu_Question.S_Quest_End_Date</span>
+                    </div>
+                 </td>
+                 <td class=" col-sm-2">
+                   <div>
+                        <a><span class="blue-text">@Model.list[k].stu_Question.S_Points_Offered</span></a>
+                   </div>
+                 </td>
+               </tr>
+              }}
+            }
+            </tbody>
+            <tbody id="showTable"></tbody>
+        </table>
+
+    </div>
+
+      <script>
+          $('#Serc').on("click", function () {
+
+              $.ajax({
+                  url: "/Home/SearchData",
+                  type: "POST",
+                  dataType: "json",
+                  data: { Quest: $('#S_Title').val() },
+                  success: function (data) {
+                      $.each(data, function (index, item) {
+
+                          $('#HideTable').empty();
+                          alert(item);
+                          debugger;
+                          var user = '<tr data-question-id="153552" class="odd rowEntry"><td class="imgGridColumn padding-left-l no-mobile-display col-sm-2">'+
+                              item.S_UserName+'</td><td class="blankColumnLeft col-sm-8"><div class="titleGridColumn title-mobile col-sm-10"><div class="row"><div class="col-lg-9"><a href="javascript: window.location.href = "/Tutor/ShowQuestionToAnonymous/?QuestId="+item.S_Quest_Id+"&title"+item.S_Title;">'+
+                              item.S_Title + '</a></div></div></div></td><td class="dueGridColumn padding-right-l no-mobile-display col-sm-2"><div><span class="due-date-text">' + item.S_Quest_End_Date+
+                              '</span></div></td><td class=" col-sm-2"><div><a><span class="blue-text">'+item.S_Points_Offered+'</span></a></div></td></tr>';
+
+                              $('#showTable').append(user);
+                              $('#S_Title').val('');
+                      });
+                  },
+                  error:function(data)
+                  {
+                      alert('Data not Found');
+                  }
+              });
+          });
+      </script>
+
+
+    <div class="row col-sm-7" style="margin-left:37%">
+			<a href="@Url.Action("SignUp","Home")" class="btn1 btn1-cc">SIGN UP</a>
+		</div>
+    <div class="col-md-12">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="https://www.upwork.com/info/terms/cookie-policy/">Cookie Policy</a>
+     </div>
+  </body>
+</html>

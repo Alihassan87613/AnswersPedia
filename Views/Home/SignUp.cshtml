@@ -1,0 +1,69 @@
+﻿
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/CSS/SignUp.css" rel="stylesheet" />
+    
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+@{
+    ViewBag.Title = "StudentLogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section btn
+    {
+        <a href="@Url.Action("LogIn","STLogIn")">
+            <input type="submit" value="Sign In" class="botton btnccess">   
+         </a>                
+    }
+<div class="container" >
+    <div class ="col-md-10">   
+        <hgroup class="text-center">
+            <h1 class="m-xs-top-bottom">Let's Get started! </h1> 
+        </hgroup>
+    </div>
+      <div class="col-md-12 text-center">
+                <div class="col-md-5">
+                    <div class="text-muted">
+                        <div>
+                            <span class="UserDesign" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                            
+
+                        </div>
+                        <div class="o-user-type-selection">I want to work as a Tutor And Looking best Position</div>
+                    </div>
+                    <p class="fs-sm m-lg-bottom">
+                        Post best solution to Questions, 
+                        <br>
+                        and grow your profile as a expert.
+                    </p>
+                    <a href="@Url.Action("SignUp2","STRegisteration")">
+                   
+                        <input type="submit" value="Create Acount" class="btn1 bck">   
+                    </a> 
+                </div>
+                <div class="col-md-2"></div>
+
+                <div class="col-md-5">
+                    <div class="text-muted">
+                        <span class="UserDesign" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                            
+                        <div class="o-user-type-selection">I'm looking for online HomeWork, Assignment Solution</div>
+                    </div>
+                    <p class="fs-sm m-lg-bottom">
+                        Post your Question And Find Best Answer 
+                        <br>
+                        Increase your Grade.
+                    </p>
+                    <a href="@Url.Action("SignUp1","STRegisteration")">
+                   
+                        <input type="submit" value="Create Acount" class="btn1 bck">   
+                    </a> 
+                </div>
+            </div>
+    </div>
+<div class="bottom">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="https://www.upwork.com/info/terms/cookie-policy/">Cookie Policy</a>
+      </div>

@@ -1,0 +1,180 @@
+﻿@model StudentHelpp.Models.Tutor_Points
+
+@{
+    ViewBag.Title = "WithDrwan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/CSS/Earning.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div id="botom" class="row padding-top-m padding-bottom-m padding-left-intelligent padding-right-intelligent">
+    <div class="col-md-12 tutor-dashboard-heading">
+        <h1 class="col-sm-12">WithDraw Money</h1>
+        <br>
+        <div class="row col-sm-12 account-balance-total">
+            <h3>TOTAL Points</h3>
+            <p class="balance green-text" style="font-size:21px;"><span class="dollar-sign">Points-</span> @ViewData["TotalPoints"]</p>
+        </div>
+    </div>
+
+    <div class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" name="Email" class=" email2" id="P_Email" placeholder="Enter PayPal Email here..." />
+                </label>
+                
+    </div>
+
+    <div class="tab-pane" id="Membrship">
+        <ul class="MembershipPlans">
+                        <li class="MembershipPlan is-annual">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                       <h3 class="MembershipPlan-title">
+                                         Starting offer
+                                       </h3>
+                                       <span class="MembershipPlan-price">$30 </span>
+                                       <span class="MembershipPlan-duration">For</span>
+                                        
+                                        <span class="MembershipPlan-price">Points 130 </span>
+                                        <!-- NEW -->
+                                <div class="MembershipPlan-cta">
+                                 <button class="btn btn-small btn-info " id="Starting">WithDraw</button>
+                                 <span id="start" style="font-size:18px; color:red;"></span>
+                                </div>
+                            </div>
+                        </header>
+                            </div>
+                        </li>
+                         <script>
+
+
+                             $('#Starting').on("click", function () {
+                                 debugger;
+                                 var data = {};
+                                 data.Points_Buyed = '100';
+                                 data.S_Email =$('#P_Email').val();
+                                 $.ajax({
+                                     url: '/Earning/WithDrwanMoneyRequest',
+                                     method: 'post',
+                                     contentType: "application/json; charset=utf-8",
+                                     data: '{data: ' + JSON.stringify(data) + '}',
+                                     success: function (data1) {
+                                         if (!data1) {
+                                             $('#start').text('You dont have enough points & may be sothing wrong');
+                                         }
+                                         else {
+                                             $('#pointsStatus').empty();
+
+                                         }
+                                     }
+                                 });
+                             });
+                        </script>
+
+                        <li class="MembershipPlan is-monthly is-hidden">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                        <h3 class="MembershipPlan-title">
+                                            Few Days Offer
+                                        </h3>
+                                            <span class="MembershipPlan-price"> $50 </span>
+                                            <span class="MembershipPlan-duration">For</span>
+
+                                            <span class="MembershipPlan-price">Points 240</span>
+                                            <!-- NEW -->
+                                            <div class="MembershipPlan-cta">
+                                              <button class="btn btn-small btn-info" id="Freee">WithDraw</button>
+                                              <span id="fr" style="font-size:18px; color:red;"></span>
+
+                                            </div>
+                                    </div>
+                                </header>
+                            </div>
+                        </li> 
+                         <script>
+
+                             $('#Freee').on("click", function () {
+                                 var data = {};
+                                 data.Points_Buyed = "30";
+                                 data.S_Email = $('#P_Email').val();
+                                 debugger;
+                                 $.ajax({
+                                     url: '/Earning/WithDrwanMoneyRequest',
+                                     method: 'post',
+                                     contentType: "application/json; charset=utf-8",
+                                     data: '{data: ' + JSON.stringify(data) + '}',
+                                     success: function (data1) {
+                                         if (!data1) {
+                                             $('#fr').text('You dont have enough points');
+                                         } else {
+                                             $('#pointsStatus').empty();
+
+                                         }
+                                     }
+                                 });
+                             });
+                        </script>
+
+                        <li class="MembershipPlan is-annual is-monthly is-hidden">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                        <h3 class="MembershipPlan-title">
+                                            Intro
+                                        </h3>
+                                       <span class="MembershipPlan-price"> $80</span>
+                                       <span class="MembershipPlan-duration">For</span>
+                                       <span class="MembershipPlan-price">Points 400</span>
+
+                                        
+                                        <!-- NEW -->
+                                    <div class="MembershipPlan-cta">
+                                        <button class="btn btn-small btn-info " id="Intro">WithDraw</button>
+                                        <span id="intr" style="font-size:18px; color:red;"></span>
+
+                                    </div>
+                                </div>
+                                </header>
+                            </div>
+                        </li>
+                         <script>
+
+                             $('#Intro').on("click", function () {
+                                 debugger;
+
+                                 var data = {};
+                                 data.Points_Buyed = '190';
+                                 data.S_Email = $('#P_Email').val();
+                                 $.ajax({
+                                     url: '/Earning/WithDrwanMoneyRequest',
+                                     method: 'post',
+                                     contentType: "application/json; charset=utf-8",
+                                     data: '{data: ' + JSON.stringify(data) + '}',
+                                     success: function (data1) {
+                                         if (!data1) {
+                                             $('#intr').text('You dont have enough points');
+
+                                         }
+                                         else {
+                                             $('#pointsStatus').empty();
+
+                                         }
+                                     }
+                                 });
+                             });
+                        </script>            
+
+        </ul>
+    </div></div>
+<script>
+
+</script>

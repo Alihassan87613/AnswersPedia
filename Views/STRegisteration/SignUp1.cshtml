@@ -1,0 +1,137 @@
+﻿@model StudentHelpp.Models.Student
+
+@{
+    ViewBag.Title = "Registeration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+     <link href="~/CSS/countrySelect.css" rel="stylesheet" />
+     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+     <link href="~/Content/Site.css" rel="stylesheet" />
+     <link href="~/CSS/Registration.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+
+      <script src="~/Scripts/countrySelect.js"></script>
+    <script src="~/Scripts/countrySelect.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+
+
+@section btn
+{
+    <a href="@Url.Action("LogIn","STLogIn")">
+        <input type="submit" value="@ViewData["Button"]" class="btn btn-success">   
+    </a>                  
+}
+
+ <div class="Line">
+          <h1> CREATE ACOUNT AS A Student </h1>
+ </div>
+
+<div class="col-md-5">
+    
+        @using (Html.BeginForm("SignUp1", "STRegisteration", FormMethod.Post))
+        {
+         
+            @Html.AntiForgeryToken()    
+            @Html.ValidationSummary(true , "Account creation was unsuccessful. Please correct the errors and try again.")
+
+
+            <div class="editor-field">
+                 <label class="email-label2">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="userName" class=" email2" placeholder="UserName here..." />
+                </label>
+                
+            </div>  
+            @Html.ValidationMessageFor(model => model.userName)
+            
+            <div class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-envelope"></i>
+
+                    <input type="email" name="Email" class=" email2" placeholder="Email here..." />
+                </label>
+                
+            </div>
+            @Html.ValidationMessageFor(model => model.Email)
+            <div class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-key"></i>
+                    <input type="password" name="Password" class=" email2" placeholder="Password here..." />
+                </label>
+                
+            </div>
+            @Html.ValidationMessageFor(model => model.Password)
+            <div class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-key"></i>
+                    <input type="password" name="ConfirmPassword" class=" email2" placeholder="Re-Enter Password here..." />
+                </label>
+                
+            </div>
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            <div class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-male"></i>
+                    @Html.DropDownList("Gender", new List<SelectListItem>{
+                    new SelectListItem{Text="Male" , Value="Male",},
+                    new SelectListItem{Text="Female" , Value="Female"}
+                    }, "Gender", new { @class= "style"})
+                    
+               </label>
+            </div>
+            @Html.ValidationMessageFor(model => model.Gender)
+            <div class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-question"></i>
+                    <input type="text" name="Quest" class="Quest" placeholder="What is your Best Friend Name ?" />
+                </label>
+               
+            </div>
+             @Html.ValidationMessageFor(model => model.Quest)
+            
+            <div class="editor-field">
+                <input type="text" class="con" name="Country" id="country">
+                
+            </div>
+            <script>
+                    $("#country").countrySelect();
+            </script>
+            @Html.ValidationMessageFor(model => model.Country)
+
+            
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(model => model.Check)
+
+                        <label>Yes, I understand and agree to the Upwork Terms of Service, 
+                           <br>including the User Agreement and Privacy Policy.
+                        </label>
+                         
+                    </div>
+                      @Html.ValidationMessageFor(model => model.Check)
+                  </div>
+                </div>
+            
+            <input type="submit" value="Get Started"  class="btn1 btn1-cc" >    
+        }
+
+    </div>
+
+    <div class="col-md-12">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="https://www.upwork.com/info/terms/cookie-policy/">Cookie Policy</a>
+      </div>
+
+
+

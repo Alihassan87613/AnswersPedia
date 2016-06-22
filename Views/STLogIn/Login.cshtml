@@ -1,0 +1,150 @@
+﻿@model StudentHelpp.Models.PersonSignIn
+
+     <link href="~/Content/bootstrap.css" rel="stylesheet" />   
+     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+     <link href="~/Content/Site.css" rel="stylesheet" />
+     <link href="~/CSS/LogIn.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+    
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+
+      <script src="~/Scripts/countrySelect.js"></script>
+    <script src="~/Scripts/countrySelect.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section btn
+{
+        <a href="@Url.Action("SignUp", "Home")">
+            <input type="Submit" value="@ViewData["Button"]" class="botton btnccess">   
+         </a>                
+}
+
+<div class="container" >
+      
+      <div class="row">
+        <div class="col-md-7">
+         
+            <div class="desgn">
+                <label class="dess">HelpStudent.com</label>
+                     is an Organization Which develop to help
+                Students who needs solution of Assignments, HomeWorks 
+                & help in solving Term Project.It's a place we will solve your every problem
+                 we Have team of expert Tutors in study field which will help you. 
+                  
+           </div>
+          
+        </div>
+          
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            
+            <div class="panel-body" >
+
+              <div class="pageHeader" >
+                <h3>LOG IN</h3>
+              </div>
+             @using (Html.BeginForm("LogIn", "STLogin", FormMethod.Post))
+             {
+                @Html.AntiForgeryToken()
+                 @Html.ValidationSummary(true)
+
+                
+                <div class="editor-field">
+                    <label class="email-label2">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" name="Email" class="email2" placeholder="Email here..." />
+                </label>
+                </div>
+                
+                 @Html.ValidationMessageFor(model => model.Email)    
+                 <label class="Email1"> @ViewData["IncEmail"] </label>
+  
+                <div class="editor-field">
+                 <label class="email-label2">
+                    <i class="fa fa-key"></i>
+                    <input type="password" name="Password" class="email2" placeholder="Password here..." />
+                </label> 
+                 </div>
+                  @Html.ValidationMessageFor(model => model.Password) 
+                 <label class="Password1">@ViewData["IncPassword"]</label>
+                
+                 
+                 
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(model => model.Tutor)
+                        @Html.LabelFor(model => model.Tutor)
+
+                        @Html.CheckBoxFor(model => model.Student)
+                        @Html.LabelFor(model => model.Student)
+
+                    </div>
+                  </div>
+                </div>
+                <label class="Password1">@ViewData["er"]</label>
+                 
+                 <!-- CHECK BOX   -->
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                       
+                       @Html.CheckBoxFor(model => model.RememberMe)
+                        @Html.LabelFor(model => model.RememberMe)
+                       
+
+                    </div>
+                  </div>
+                </div>
+                 <!-- CHECK BOX   -->
+
+                 <!-- SIGN IN SIGNUP   -->
+                <div class="form-group">
+                  <div class="col-sm-offset-21 col-sm-10">
+                    
+                        <input type="submit" value="LogIn"  class="btn1 btnccess">
+
+                      <a href="@Url.Action("HomePage", "Home")">
+                        <input type="button" value="Cancel" class="btn1 btnccess"> 
+                     </a>
+                  </div>
+                </div>
+                 <!-- SIGN IN SIGN UP   -->
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <a class="forget" href="@Url.Action("ForGetPassword","STLogIn")">ForGetPassword ?</a>
+                    </div>
+                  </div>
+                </div>
+
+               
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="col-md-12">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="https://www.upwork.com/info/terms/cookie-policy/">Cookie Policy</a>
+</div>
+

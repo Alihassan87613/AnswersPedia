@@ -1,0 +1,281 @@
+﻿@section Head
+{
+    @model StudentHelpp.Models.ViewModelTutorProfile
+    @using StudentHelpp.Models; 
+}
+
+@{
+    ViewBag.Title="Profile";
+    Layout = "~/Views/Shared/_AcountLayout.cshtml";
+}
+@section btn
+{
+    <li><a href="@Url.Action("LogOut", "STLogin")">Log Out</a></li>
+}
+@section quest
+{
+    <li><a href="@Url.Action("BrowseQuest", "Tutor")">New Questions</a></li>
+}
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("AllQuestionsShownToTutorAnswerPostedByTutor","Tutor")">Questions</a></li>
+}
+@section leftSide
+{
+     <div class="top">
+        <ul>
+            <li class="margin"><a href="#Over">OverView</a></li>
+            <li class="margin"><a href="#Sub">Subject</a></li>
+            <li class="margin"><a href="#Edu">Education</a></li>
+        </ul>
+    </div>
+}
+@section UserName
+{
+        @ViewData["UserName"]    
+}
+@section Profile
+{
+    <li><a href="@Url.Action("TutorProfile", "Tutor")">Profile</a></li>    
+}
+
+@section Home{
+    <li><a href="@Url.Action("TutorAcount", "Tutor")">Home</a></li>    
+    }
+@section Prfile
+{
+    <li><a href="@Url.Action("TutorProfile", "Tutor")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("EarningAcount", "Earning")">Acount</a></li>    
+}
+@section Acount
+{
+    <li><a href="@Url.Action("EarningAcount","Earning")">Acount</a></li>    
+}
+@section Notification
+{
+     <div class="colm">
+       <label  class="headd">
+          Inbox
+       </label>
+       <br>
+       <label class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["AnswerCnt"])</span>
+           Answer
+       </label>
+       <br>
+       <label  class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["TotalPoints"])</span>
+           Points
+       </label>
+    </div>  
+}
+@section Details{
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+    @* //****************************************************************@
+    @* //***************************TUTOR INFO***************************@
+    @* //****************************************************************@
+  @{   
+        int h1 = 0, h2 = 0, h = 0, s = 0, i111 = 0;
+        <div class="col-md-12">
+        <div class="jumbotron">
+            <div class="pan">
+                <label>OverView</label>
+                <div class="col-md-12" id="over">
+                @{
+                    if (Model.tutor_info.type != "E")
+                    {
+                        if ((Int32)ViewData["Countabc"] == 0)
+                        { }
+                        else
+                        {
+                            for (s = 0; s < (Int32)ViewData["countO"]; s++)
+                            {
+                                     @Html.Raw(HttpUtility.HtmlDecode(Model.objStu[s].tutor_info.Overview))
+                            }
+                        }
+                    }
+                 }
+                </div>
+            </div>
+            <div class="pan">
+                <label>Subject</label>
+                <div class="col-md-12" id="Sub">
+
+                    @{
+                        if (Model.tutor_info.type != "S")
+                        {
+                            if ((Int32)ViewData["countSub"] >= 1)
+                            {
+                                for (i111 = 0; i111 < 6; i111++)
+                                {
+                                    if (Model.objStu[0].tutor_subject[i111].Checked == true)
+                                    {
+                                            <label>
+                                                @Model.objStu[0].tutor_subject[i111].Subject_Name
+                                            </label>
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                </div>
+            </div>
+            <div class="pan" id="Edu">
+                <label>Education</label>
+                 <div class="aa">
+                    <div class="uni">
+                        <label>Univeristy</label>
+
+                         <div class="clg">
+                         
+                         </div>
+                         <div class="sub">
+                         @{
+                             if (Model.tutor_info.type != "U" && Model.tutor_info.type != "UU")
+                             {
+                                 if (Model.tutor_info.UniId == Guid.Empty)
+                                 {
+                                     if ((Int32)ViewData["Countabc"] == 0)
+                                     { }
+                                     else
+                                     {
+                                         for (h = 0; h < (Int32)ViewData["countU"]; h++)
+                                         {
+                                            <p>Degree : @Model.objStu[h].tutor_info.Degree</p>
+                                            
+                                            <label> @Model.objStu[h].tutor_info.Uni                (@Model.objStu[h].tutor_info.UniStartDay/@Model.objStu[h].tutor_info.UniStartMonth/@Model.objStu[h].tutor_info.UniStartYear) to (@Model.objStu[h].tutor_info.UniEndDay/@Model.objStu[h].tutor_info.UniEndMonth/@Model.objStu[h].tutor_info.UniEndYear)  </label>
+                                
+                                         }
+                                     }
+                                 }
+                             }
+                          }
+                         
+                        </div>
+                    </div>
+                    <div class="uni" >
+                        <label>College</label>
+                        <div class="clg">
+                        </div>
+                        <div class="sub1">
+                        @{
+                            if (Model.tutor_info.type != "C" && Model.tutor_info.type != "CC")
+                            {
+                                if (Model.tutor_info.ClgId == Guid.Empty)
+                                {
+                                    if ((Int32)ViewData["Countabc"] == 0)
+                                    { }
+                                    else
+                                    {
+                                        for (h1 = 0; h1 < (Int32)ViewData["countC"]; h1++)
+                                        {
+                                            
+                                    <label> @Model.objStu[h1].tutor_info.College               (@Model.objStu[h1].tutor_info.CollegeStartDay/@Model.objStu[h1].tutor_info.CollegeStartMonth/@Model.objStu[h1].tutor_info.CollegeStartYear) to (@Model.objStu[h1].tutor_info.CollegeEndDay/@Model.objStu[h1].tutor_info.CollegeEndMonth/@Model.objStu[h1].tutor_info.CollegeEndYear)  </label>
+                                
+                                        }
+                                    }
+                                }
+                                
+                            }
+                           
+                        }
+                        </div>
+                    </div>
+                    <div class="uni">
+                        <label>School</label>
+                        <div class="clg">
+                        </div>
+                        <div class="sub1">
+                            @{
+                                if (Model.tutor_info.type != "5" && Model.tutor_info.type != "55")
+                                {
+                                    if (Model.tutor_info.SchoolId == Guid.Empty)
+                                    {
+                                        if ((Int32)ViewData["Countabc"] == 0)
+                                        { }
+                                        else
+                                        {
+                                            for (h2 = 0; h2 < (Int32)ViewData["countS"]; h2++)
+                                            {
+                                                    
+                                                     <label> @Model.objStu[h2].tutor_info.School               (@Model.objStu[h2].tutor_info.SchoolStartDay/@Model.objStu[h2].tutor_info.SchoolStartMonth/@Model.objStu[h2].tutor_info.SchoolStartYear) to (@Model.objStu[h2].tutor_info.SchoolEndDay/@Model.objStu[h2].tutor_info.SchoolEndMonth/@Model.objStu[h2].tutor_info.SchoolEndYear)  </label>
+                                
+                                            }
+                                        }
+                                    }
+                                }
+                              } 
+                         
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+  }
+}
+@section img1
+{
+    <style>
+        .Name{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #32bd32;
+    margin-left: 8%;
+    border-bottom: 1px solid #32bd32;
+    width: 41%;
+}
+
+    </style>
+        @{
+            if (Model.tutor_info.type != "Imag")
+            {
+                            
+                if ((Int32)ViewData["Imagecount"] == 0)
+                {
+                    <div class=" col-xs-10 image"> 
+                        <img  src="~/images/no-user-image-square.png"  alt=""/>
+                    </div>
+                }
+                else
+                {
+                    TutorImage stu_Image = new TutorImage();
+                    stu_Image = (TutorImage)ViewData["ImageProfile"];
+                    <div class=" col-xs-10 image"> 
+                        <img src="data:image/png;base64,@Convert.ToBase64String(stu_Image.Image_Data, 0, stu_Image.Image_Data.Length)"  />  
+                    </div>
+                }
+            }
+            else
+            {
+                if ((Int32)ViewData["Imagecount"] == 0)
+                {
+                    <div class=" col-xs-10 image"> 
+                        <img  src="~/images/no-user-image-square.png" alt=""/>
+                    </div>
+                    
+                }
+                else
+                {
+                    TutorImage stu_Image = new TutorImage();
+                    stu_Image = (TutorImage)ViewData["ImageProfile"];
+                    <div class=" col-xs-10 image"> 
+                        <img src="data:image/png;base64,@Convert.ToBase64String(stu_Image.Image_Data, 0, stu_Image.Image_Data.Length)"  />  
+                    </div>
+                 
+                }
+            }
+    }  
+   
+}
+@section Image
+{
+   
+}
+

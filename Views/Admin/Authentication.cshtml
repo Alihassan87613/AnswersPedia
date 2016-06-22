@@ -1,0 +1,212 @@
+﻿@model StudentHelpp.Models.Admin
+
+@{
+    ViewBag.Title = "Registeration";
+    Layout = "~/Views/Shared/_LogInLayout.cshtml";
+}
+     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+         <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+     <link href="~/CSS/countrySelect.css" rel="stylesheet" />
+     <link href="~/Content/Site.css" rel="stylesheet" />
+     <link href="~/CSS/LogIn.css" rel="stylesheet" />
+     <link href="~/CSS/Registration.css" rel="stylesheet" />
+     <link href="~/CSS/Admin.css" rel="stylesheet" />
+
+
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+@section btn
+{
+                    
+}
+
+    <div class="container" >
+      <div class="row">
+          <div class="col-md-6">
+
+              <div class="Line" id="Linee">
+                  <h1> Acount Creation AS A Admin </h1>
+              </div>
+              <div class="Line">
+            <span id="ShowConfirmSignup" style="color:red;font-size:30px;font-weight:700;" ></span>
+                  </div>
+            <div class="col-md-5" id="Signup">
+                <div class="editor-field">
+                     <label class="email-label2">
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="Admin_user_Id" id="Admin_userId" class=" email2" placeholder="User ID here..." />
+                    </label>
+                    <br>
+                    <span id="Admin_user_Id" style="color:red;"></span>
+                </div>  
+            
+                <div class="editor-field">
+                    <label class="email-label2">
+                        <i class="fa fa-key"></i>
+                        <input type="password" name="A_Password" id="APassword" class=" email2" placeholder="Password here..." />
+                    </label>
+                    <br>
+                    <span id="A_Password" style="color:red;"></span>
+                </div>
+                <div class="editor-field">
+                    <label class="email-label2">
+                        <i class="fa fa-key"></i>
+                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class=" email2" placeholder="Re-Enter Password here..." />
+                    </label>
+                    <span id="Confirm_Password" style="color:red;"></span>
+                </div>
+            
+                <input type="submit" value="Get Started" id="Submitt"  class="btn1 btn1-cc" >    
+            </div>
+          </div>
+          <div class="col-md-6">
+           <span id="ShowConfirmLogin" style="color:red; font-size:large"></span>
+           <div class="col-md-4" id="Login">
+
+          <div class="panel panel-default">
+            <div class="panel-body" >
+              <div class="pageHeader" >
+                <h3>LOG IN</h3>
+              </div>
+
+                
+                <div class="editor-field">
+                    <label class="email-label2">
+                    <i class="fa fa-envelope"></i>
+                    <input type="text" id="Admin_userId1" class="email2" placeholder="User ID here..." />
+                </label>
+                </div>
+                <span id="Admin_user_Id1" style="color:red;"></span>
+
+  
+                <div class="editor-field">
+                 <label class="email-label2">
+                    <i class="fa fa-key"></i>
+                    <input type="password" id="APassword1" class="email2" placeholder="Password here..." />
+                </label> 
+                 </div>
+                 <span id="A_Password1" style="color:red;"></span>
+                 
+
+                 <!-- SIGN IN SIGNUP   -->
+                <div class="form-group">
+                  <div class="col-sm-offset-21 col-sm-10">
+                    <input type="submit" value="LogIn"  id="Loginn" class="btn2 btnccess">
+                  </div>
+                </div>
+                 <!-- SIGN IN SIGN UP   -->
+              
+            </div>
+          </div>
+        </div>
+           </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="https://www.upwork.com/info/terms/cookie-policy/">Cookie Policy</a>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#Submitt').on("click", function () {
+            debugger;
+            var Url = {
+                MyUrl: '@Url.Action("SubmitSignup", "Admin")'
+            }
+            var ConfirmPassword = $('#ConfirmPassword').val();
+            var Admin_user_Id = $('#Admin_userId').val();
+            var A_Password = $('#APassword').val();
+            if (Admin_user_Id == "") {
+                $('#Admin_user_Id').text('Field is Required');
+                $('#Admin_user_Id').show();
+            }
+            if (A_Password == "") {
+                $('#A_Password').text('Field is Required');
+                $('#A_Password').show();
+            }
+            if (ConfirmPassword == "") {
+                $('#Confirm_Password').text('Field is Required');
+                $('#Confirm_Password').show();
+            }
+            if (A_Password != ConfirmPassword) {
+                $('#Confirm_Password').text('Password does not match');
+                $('#Confirm_Password').show();
+            }
+
+            var Cmt = {};
+            Cmt.Admin_user_Id = Admin_user_Id;
+            Cmt.A_Password = A_Password;
+            debugger;
+            $.ajax({
+                url: Url.MyUrl,
+                method: 'post',
+                contentType: "application/json; charset=utf-8",
+                data: '{Cmnt: ' + JSON.stringify(Cmt) + '}',
+                success: function (data) {
+                    if (data) {
+                        $("#Signup").hide();
+
+                        $('#ShowConfirmSignup').text('Acount have been Created<br>Now You can LogIn!!');
+                        $("#ShowConfirmSignup").show("slow");
+                        $('#Linee').hide();
+                    }
+                    else {
+                        $('#ShowConfirmSignup').text('Invalid Data Try Again');
+                        $("#ShowConfirmSignup").show("slow");
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+
+        });
+        
+        $('#Loginn').on("click", function () {
+            var Url = {
+                MyUrl: '@Url.Action("SubmitLogIn", "Admin")'
+            }
+            var Admin_user_Id = $('#Admin_userId1').val();
+            var A_Password = $('#APassword1').val();
+            if (Admin_user_Id == "") {
+                $('#Admin_user_Id1').text('Field is Required');
+                $('#Admin_user_Id1').show();
+            }
+            if (A_Password == "") {
+                $('#A_Password1').text('Field is Required');
+                $('#A_Password1').show();
+            }
+
+            var Cmt = {};
+            Cmt.Admin_user_Id = Admin_user_Id;
+            Cmt.A_Password = A_Password;
+
+            $.ajax({
+                url: Url.MyUrl,
+                method: 'post',
+                contentType: "application/json; charset=utf-8",
+                data: '{Cmnt: ' + JSON.stringify(Cmt) + '}',
+                success: function (data) {
+                    if (data) {
+                        window.location.href = '/Admin/Home';
+                    }
+                    else {
+                        $("#ShowConfirmLogin").text('Invalid Data Try Again');
+                        $("#ShowConfirmLogin").show("slow");
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+    });
+</script>
+
+
+

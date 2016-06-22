@@ -1,0 +1,1164 @@
+﻿@section Head{
+    @using StudentHelpp.Models;
+    @model StudentHelpp.Models.ViewModelStudentProfile
+}
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_AcountLayout.cshtml";
+}
+
+@section Prfile
+{
+    <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section leftSide
+{
+    <div class="top">
+        <ul>
+            <li class="margin"><a href="#Over">OverView</a></li>
+            <li class="margin"><a href="#Edu">Education</a></li>
+            <li class="margin"><a href="@Url.Action("StudentPublicProfile", "Student",new { user = (string)@ViewData["UserName"] ,Cur_User= @Model.stu_Question.S_Email })">Public View</a></li>
+        </ul>
+    </div>
+}
+@section quest
+{
+     <li id="New_Quest"><a onclick="Redirect()">Post Question</a></li>
+          <script>
+              var points = @ViewData["Total_Points"]
+              function Redirect(){
+                 
+                  if (points < 10) {
+                      window.location = "/Payment/PaymentAcount";
+                  }
+                  else
+                  {
+                      window.location = "/Student/PostQuestion";
+                  }
+              }
+      </script>
+}
+@section Profile
+{
+      <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>
+  
+}
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("PostedQuestion", "Student")">Questions</a></li>
+}
+@section Acount
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section UserName
+{
+        @ViewData["UserName"]    
+}
+@section btn{
+    <li><a href="@Url.Action("LogOut", "STLogIn")">Log Out</a></li>
+}
+@section Home{
+    <li><a href="@Url.Action("StudentAcount", "Student")">Home</a></li>    
+    }
+@section Notification
+{
+    <div class="colm">
+       <label  class="headd">
+          Inbox
+       </label>
+       <br>
+       <label class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["QuestionCnt"])</span>
+           Questions
+       </label>
+       <br>
+       <label  class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["TotalPoints"])</span>
+           Points
+       </label>
+       
+    </div>       
+}
+
+@section Details{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+
+    @* //****************************************************************@
+    @* //***************************TUTOR INFO***************************@
+    @* //****************************************************************@
+     
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <div class="pan" id="Over">
+                <label>OverView</label>
+                <button type="button" class="bttnn primary" onclick="AddOverView()">Edit</button> 
+                <div class="col-md-12">
+                    @{
+                        if (Model.Student_info.type != "E")
+                        {
+                            if ((Int32)ViewData["Countabc"] == 0)
+                            { }
+                            else
+                            {
+                                for (int s = 0; s < (Int32)ViewData["countO"]; s++)
+                                {
+                                @Html.Raw(HttpUtility.HtmlDecode(Model.objStu[s].Student_info.Overview))
+                                }
+                           }
+                        }
+                        else if (Model.Student_info.type == "E")
+                        {
+                            <script type="text/javascript">
+                                document.onload = $(document).ready(function () {
+                                    $('#OverView').modal({
+                                        show: true,
+                                        backdrop: 'static',
+                                        keyboard: false
+                                    })
+                                });
+                            </script>
+                        }
+                     }
+                </div>
+            </div>
+            <div class="pan" id="Edu">
+                <label>Education</label>
+                <div class="aa">
+                    <div class="uni">
+                        <label>Univeristy</label>
+                         <div class="clg">
+                         <a href="" data-toggle="modal" data-target="#Uni1">Add a University</a>
+                         
+                         </div>
+                         <div class="sub">
+                         @{
+                             if (Model.Student_info.type != "U" && Model.Student_info.type != "UU")
+                             {
+                                 if (Model.Student_info.UniId == Guid.Empty)
+                                 {
+
+                                     if ((Int32)ViewData["Countabc"] == 0)
+                                     { }
+                                     else
+                                     {
+                                         for (int h = 0; h < (Int32)ViewData["countU"]; h++)
+                                         {
+                                             <p>Degree : @Model.objStu[h].Student_info.Degree</p>
+                                             <a href="@Url.Action("HelloU", "Student", new { abc = Model.objStu[h].Student_info.Uni_Id })">                                     
+                                                <button type="submit" class="bttnn primary">Edit</button>
+                                            </a> 
+                                             <label> @Model.objStu[h].Student_info.Uni                (@Model.objStu[h].Student_info.UniStartDay/@Model.objStu[h].Student_info.UniStartMonth/@Model.objStu[h].Student_info.UniStartYear) to (@Model.objStu[h].Student_info.UniEndDay/@Model.objStu[h].Student_info.UniEndMonth/@Model.objStu[h].Student_info.UniEndYear)  </label>
+                                
+                                         }
+                                     }
+
+                                 }
+                                 else
+                                 {
+                                    <script type="text/javascript">
+                                        document.onload = $(document).ready(function () {
+                                            $('#Uni').modal({
+                                                show: true, backdrop: 'static',
+                                                keyboard: false
+                                            })
+                                        });
+                                     </script>
+
+                                 }
+                             }
+                             else if (Model.Student_info.type == "U" || Model.Student_info.type == "UU" || Model.Student_info.type == "UD")
+                             {
+                                <script type="text/javascript">
+                                    document.onload = $(document).ready(function () {
+                                        $('#AddUni').modal({
+                                            show: true,
+                                            backdrop: 'static',
+                                            keyboard: false
+                                        })
+                                    });
+                                     </script>
+                             }
+                              
+                         }
+                        </div>
+                    </div>
+                    <div class="uni" >
+                        <label>College</label>
+                        <div class="clg">
+                        <a href="" data-toggle="modal" data-target="#College1">Add a College</a>
+
+                        </div>
+                        <div class="sub1">
+                         @{
+                             if (Model.Student_info.type != "C" && Model.Student_info.type != "CC")
+                             {
+
+                                 if (Model.Student_info.ClgId == Guid.Empty)
+                                 {
+                                     if ((Int32)ViewData["Countabc"] == 0)
+                                     { }
+                                     else
+                                     {
+                                         for (int h1 = 0; h1 < (Int32)ViewData["countC"]; h1++)
+                                         {
+                                            <a href="@Url.Action("HelloC", "Student", new { abc = Model.objStu[h1].Student_info.Clg_Id })">                                     
+                                                <button type="submit" class="bttnn primary">Edit</button>
+                                            </a>                                     <label> @Model.objStu[h1].Student_info.College               (@Model.objStu[h1].Student_info.CollegeStartDay/@Model.objStu[h1].Student_info.CollegeStartMonth/@Model.objStu[h1].Student_info.CollegeStartYear) to (@Model.objStu[h1].Student_info.CollegeEndDay/@Model.objStu[h1].Student_info.CollegeEndMonth/@Model.objStu[h1].Student_info.CollegeEndYear)  </label>
+                                
+                                         }
+                                     }
+                                 }
+                                 else
+                                 {
+                                    <script type="text/javascript">
+                                        document.onload = $(document).ready(function () {
+                                            $('#College').modal({
+                                                show: true,
+                                            })
+                                        });
+                                     </script>
+
+                                 }
+                             }
+                             else if (Model.Student_info.type == "C" || Model.Student_info.type == "CC")
+                             {
+                                <script type="text/javascript">
+                                    document.onload = $(document).ready(function () {
+                                        $('#College1').modal({
+                                            show: true,
+                                            backdrop: 'static',
+                                            keyboard: false
+                                        })
+                                    });
+                                     </script>
+                             }
+                             else if (Model.Student_info.type == "EditC" || Model.Student_info.type == "EditCC")
+                             {
+                                <script type="text/javascript">
+                                    document.onload = $(document).ready(function () {
+                                        $('#College').modal({
+                                            show: true,
+                                            backdrop: 'static',
+                                            keyboard: false
+                                        })
+                                    });
+                                     </script>
+                             }
+                           }
+                        </div>
+                    </div>
+                    <div class="uni">
+                        <label>School</label>
+                        <div class="clg">
+                        <a href="" data-toggle="modal" data-target="#School1">Add a School</a>
+
+                        </div>
+                        <div class="sub1">
+                         @{
+                             if (Model.Student_info.type != "5" && Model.Student_info.type != "55")
+                             {
+                                 if (Model.Student_info.SchoolId == Guid.Empty)
+                                 {
+                                     if ((Int32)ViewData["Countabc"] == 0)
+                                     { }
+                                     else
+                                     {
+                                         for (int h2 = 0; h2 < (Int32)ViewData["countS"]; h2++)
+                                         {
+                                            <a href="@Url.Action("Hello5", "Student", new { abc = Model.objStu[h2].Student_info.School_Id })">                                     
+                                                <button type="submit" class="bttnn primary">Edit</button>
+                                            </a>    
+                                            <label> @Model.objStu[h2].Student_info.School               (@Model.objStu[h2].Student_info.SchoolStartDay/@Model.objStu[h2].Student_info.SchoolStartMonth/@Model.objStu[h2].Student_info.SchoolStartYear) to (@Model.objStu[h2].Student_info.SchoolEndDay/@Model.objStu[h2].Student_info.SchoolEndMonth/@Model.objStu[h2].Student_info.SchoolEndYear)  </label>
+                                
+                                         }
+                                     }
+                                 }
+                                 else
+                                 {
+                                    <script type="text/javascript">
+                                        document.onload = $(document).ready(function () {
+                                            $('#School').modal({
+                                                show: true,
+                                            })
+                                        });
+                                     </script>
+
+                                 }
+                             }
+                             else if (Model.Student_info.type == "5" || Model.Student_info.type == "55")
+                             {
+                                    <script type="text/javascript">
+                                        document.onload = $(document).ready(function () {
+                                            $('#AddSchool').modal({
+                                                show: true,
+                                                backdrop: 'static',
+                                                keyboard: false
+                                            })
+                                        });
+                                         </script>
+                             }
+                             else if (Model.Student_info.type == "Edit5" || Model.Student_info.type == "Edit55")
+                             {
+                                <script type="text/javascript">
+                                    document.onload = $(document).ready(function () {
+                                        $('#School').modal({
+                                            show: true,
+                                            backdrop: 'static',
+                                            keyboard: false
+                                        })
+                                    });
+                                     </script>
+                             }
+                             }
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    
+  
+    @* //****************************************************************@
+    @* //************************EDIT EDUCATION**************************@
+    @* //****************************************************************@
+
+    <div class="modal fade" id="School" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+        @{         
+            if (Model.Student_info.SchoolId == Guid.Empty)
+            {
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            }
+            else
+            {
+                  <a href ="@Url.Action("StudentProfile", "Student", new { Id = Guid.Empty })">
+                    <button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  </a>
+            }     
+       }          <h4 class="modal-title" id="myModalLabel">Edit School</h4>
+        </div>
+        <div class="modal-body">
+           @{ if (Model.Student_info.type == "5Edit" || Model.Student_info.type == "55Edit")
+              {
+                <label class="error message">All fields are required</label>
+              }}
+             @using (Html.BeginForm("School", "Student", new { School_Id = Model.Student_info.SchoolId }, FormMethod.Post))
+             {
+                
+
+                      @Html.AntiForgeryToken()    {
+                      @Html.ValidationSummary(true){
+                      @Html.Label("School")
+                      <div>                                
+ @{ 
+                                                       if (Model.Student_info.type == "5Edit" || Model.Student_info.type != "55Edit" || Model.Student_info.type == null)
+                                                       {
+                                    @Html.EditorFor(model => model.Student_info.School)
+                                                       }
+                                                       else if (Model.Student_info.type == "55Edit")
+                                                       {
+                                   <input id="mytext" class="form-control" type="text" name="Student_info.School" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Field isn't empty" placeholder="School Name" />
+                                                       }
+                               <script>
+                                   $('#mytext').popover();
+                               </script>
+                            }                      </div>                            
+                 <br>
+                   @Html.Label("Start")
+                 
+                       @Html.DropDownList("Student_info.SchoolStartYear", Enumerable.Range(1990, 200).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Year --", new { @class = "styleSchoolStartYear" })    
+                       
+                           @Html.DropDownList("Student_info.SchoolStartMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleSchoolStartMonth" })
+                       
+                       @Html.DropDownList("Student_info.SchoolStartDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleSchoolStartDay" })  
+                 <br>  
+                   @Html.Label("To")
+                 
+                     
+                     @Html.DropDownList("Student_info.SchoolEndYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                }), "-- Year --", new { @class = "styleSchoolEndYear" })    
+                       
+                           @Html.DropDownList("Student_info.SchoolEndMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleSchoolEndMonth" })
+                       
+                       @Html.DropDownList("Student_info.SchoolEndDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleSchoolEndDay" }) 
+                     
+                     
+                      <input class="btt" ID="btnUp" type="submit" value="Submit"/>  
+                                                   }
+                                                  }
+             }
+        </div>
+      
+     </div>
+    </div>
+    </div>
+    <div class="modal fade" id="College" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       @{         
+           if (Model.Student_info.ClgId == Guid.Empty)
+           {
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+           }
+           else
+           {
+                  <a href ="@Url.Action("StudentProfile", "Student", new { Id = Guid.Empty })">
+                    <button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  </a>
+           }     
+       }
+             <h4 class="modal-title" id="myModalLabel">Edit College</h4>
+      </div>
+      <div class="modal-body">
+          @{
+                 
+              if (Model.Student_info.type == "CEdit" || Model.Student_info.type == "CCEdit")
+              {
+                    <label class="error message">All fields are required</label>
+              }
+                  
+             }
+             @using (Html.BeginForm("College", "Student", new { Clg_Id = Model.Student_info.ClgId }, FormMethod.Post))
+             {
+
+                      @Html.AntiForgeryToken()    {
+                      @Html.ValidationSummary(true){
+                                                       //////////////////////////////////////////////////////////
+                                                       ///////////////////////College Date///////////////////////
+                                                       //////////////////////////////////////////////////////////
+                      <div> 
+                      @Html.Label("College")
+                      </div>
+                      <div>
+                     @{ 
+                                                       if (Model.Student_info.type == null || Model.Student_info.type != "CCEdit" || Model.Student_info.type == "CEdit")
+                                                       {
+                                    @Html.EditorFor(model => model.Student_info.College)
+                                                       }
+                                                       else if (Model.Student_info.type == "CCEdit")
+                                                       {
+                                   <input id="mytex" class="form-control" type="text" name="Student_info.College" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Field isn't empty" placeholder="College Name" />
+                                                       }
+                               <script>
+                                   $('#mytex').popover();
+                               </script>
+                        }
+
+                      </div>
+                      @Html.Label("Start")
+                      @Html.DropDownList("Student_info.CollegeStartYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                 {
+                     Value = i.ToString(),
+                     Text = i.ToString()
+                 }), "-- Year --", new { @class = "styleCollegeStartYear" })    
+                       
+                           @Html.DropDownList("Student_info.CollegeStartMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleCollegeStartMonth" })
+                       
+                       @Html.DropDownList("Student_info.CollegeStartDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleCollegeStartDay" })  
+                      <br>
+                      @Html.Label("To")
+                     @Html.DropDownList("Student_info.CollegeEndYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                }), "-- Year --", new { @class = "styleCollegeEndYear" })    
+                       
+                           @Html.DropDownList("Student_info.CollegeEndMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleCollegeEndMonth" })
+                       
+                       @Html.DropDownList("Student_info.CollegeEndDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleCollegeEndDay" }) 
+                     
+                       
+                      <input class="btt" ID="btnUp" type="submit" value="Submit"/>  
+                                                   }
+                                                  }
+             }
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <div class="modal fade" id="Uni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+@{         
+    if (Model.Student_info.UniId == Guid.Empty)
+    {
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+    }
+    else
+    {
+                  <a href ="@Url.Action("StudentProfile", "Student", new { Id = Guid.Empty })">
+                    <button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  </a>
+    }     
+       }        <h4 class="modal-title" id="myModalLabel">Edit University</h4>
+      </div>
+      <div class="modal-body">
+           @{
+                 
+               if (Model.Student_info.type == "UEdit" || Model.Student_info.type == "UUEdit")
+               {
+                    <label class="error message">All fields are required</label>
+               }
+                  
+             }
+             @using (Html.BeginForm("Uni", "Student", new { Uni_Id = Model.Student_info.UniId }, FormMethod.Post))
+             {
+
+                      @Html.AntiForgeryToken()    {
+                      @Html.ValidationSummary(true){
+                      <div>
+                     @Html.Label("University")
+                     </div>
+                    <div>
+                    @{ 
+                                                       if (Model.Student_info.type == "UEdit" || Model.Student_info.type != "UUEdit" || Model.Student_info.type == null)
+                                                       {
+                                    @Html.EditorFor(model => model.Student_info.Uni)
+                                                       }
+                                                       else if (Model.Student_info.type == "UUEdit")
+                                                       {
+                                   <input id="mytex1" class="form-control" type="text" name="Student_info.Uni" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Field isn't empty" placeholder="University Name" />
+                                                       }
+                               <script>
+                                   $('#mytex1').popover();
+                               </script>
+                        }                    </div>
+                     
+                    <div>
+                     @Html.DropDownList("Student_info.Degree", new List<SelectListItem> {
+                        new SelectListItem {Text="BS in ComputerScience",Value="BS in ComputerScience"},
+                        new SelectListItem {Text="Engineering",Value="Engineering"},
+                        new SelectListItem {Text="MBA",Value="MBA"},
+                        new SelectListItem {Text="MBBS",Value="MBBS"},
+                        new SelectListItem {Text="BS in Math",Value="BS in Math"},
+                        new SelectListItem {Text="Software Engineering",Value="Software Engineering"},
+                        new SelectListItem {Text="MSc in ComputerScience",Value="MSc in ComputerScience"},
+                        new SelectListItem {Text="MIT",Value="MIT"},
+                        new SelectListItem {Text="BS in English",Value="BS in English"},
+                        new SelectListItem {Text="BS in Chemistry",Value="Bs in Chemistry"},
+                        new SelectListItem {Text="BS in Physics",Value="Bs in Physics"},
+                        new SelectListItem {Text="MPhil",Value="MPhil"},
+                        new SelectListItem {Text="Phd",Value="Phd"},
+                    }, "--Degree--", new { @class = "style" })
+                    </div>
+                   @Html.Label("Start")
+            
+                      @Html.DropDownList("Student_info.UniStartYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                 {
+                     Value = i.ToString(),
+                     Text = i.ToString()
+                 }), "-- Year --", new { @class = "styleUniStartYear" })    
+                       
+                           @Html.DropDownList("Student_info.UniStartMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleUniStartMonth" })
+                       
+                       @Html.DropDownList("Student_info.UniStartDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleUniStartDay" })  
+                      
+                     <br>
+                      @Html.Label("To")
+                     @Html.DropDownList("Student_info.UniEndYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                }), "-- Year --", new { @class = "styleUniEndYear" })    
+                       
+                           @Html.DropDownList("Student_info.UniEndMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleUniEndMonth" })
+                       
+                       @Html.DropDownList("Student_info.UniEndDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleUniEndDay" })
+
+                      <input class="btt bttprim" ID="btnUp" type="submit" value="Save Changes"/>  
+                                                   }
+                                                  }
+             }
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    @* //****************************************************************@
+    @* //************************ADD EDUCATION**************************@
+    @* //****************************************************************@
+    
+    <div class="modal fade" id="School1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+     <div class="modal-content">
+        <div class="modal-header">
+        @{
+                
+            if (Model.Student_info.type == "5" || Model.Student_info.type == "55")
+            {
+                 <a href ="@Url.Action("StudentProfile", "Student")">
+                      <button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                  </a>
+            }
+            else if (Model.Student_info.type != "5" || Model.Student_info.type != "55" || Model.Student_info.type == null)
+            {
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            }
+               
+          } 
+                       <h4 class="modal-title" id="myModalLabel">Add School</h4>
+        </div>
+        <div class="modal-body">
+            @{
+                if (Model.Student_info.type == "5")
+                {
+                            <label class="error message">All fields are required</label>
+                }
+              }
+             @using (Html.BeginForm("AddSchool", "Student", FormMethod.Post))
+             {
+                      @Html.AntiForgeryToken()    {
+                      @Html.ValidationSummary(true){
+                      @Html.Label("School")
+                      <div>                                
+  @{ 
+                                                       if (Model.Student_info.type == "5" || Model.Student_info.type != "55" || Model.Student_info.type == null)
+                                                       {
+                                    @Html.EditorFor(model => model.Student_info.School)
+                                                       }
+                                                       else if (Model.Student_info.type == "55")
+                                                       {
+                                   <input id="mytext" class="form-control" type="text" name="Student_info.School" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Field isn't empty" placeholder="School Name" />
+                                                       }
+                               <script>
+                                   $('#mytext').popover();
+                               </script>
+                            }                      </div>                            
+                 <br>
+                   @Html.Label("Start")
+                 
+                       @Html.DropDownList("Student_info.SchoolStartYear", Enumerable.Range(1990, 200).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Year --", new { @class = "styleSchoolStartYear" })    
+                       
+                           @Html.DropDownList("Student_info.SchoolStartMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleSchoolStartMonth" })
+                       
+                       @Html.DropDownList("Student_info.SchoolStartDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleSchoolStartDay" })  
+                 <br>  
+                   @Html.Label("To")
+                 
+                     
+                     @Html.DropDownList("Student_info.SchoolEndYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                }), "-- Year --", new { @class = "styleSchoolEndYear" })    
+                       
+                           @Html.DropDownList("Student_info.SchoolEndMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleSchoolEndMonth" })
+                       
+                       @Html.DropDownList("Student_info.SchoolEndDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleSchoolEndDay" }) 
+                     
+                     
+                      <input class="btt" ID="btnUp" type="submit" value="Submit"/>  
+                                                   }
+                                                  }
+             }
+          </div>
+          
+     </div>
+    </div>
+    </div>
+    <div class="modal fade" id="College1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        @{
+            if (Model.Student_info.type == "C" || Model.Student_info.type == "CC")
+            {
+                <a href ="@Url.Action("StudentProfile", "Student")">
+                     <button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                </a>
+            }
+            else if (Model.Student_info.type != "C" || Model.Student_info.type != "CC" || Model.Student_info.type == null)
+            {
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            }
+               
+           }          <h4 class="modal-title" id="myModalLabel">Add College</h4>
+      </div>
+      <div class="modal-body">
+           @{
+                 
+               if (Model.Student_info.type == "C")
+               {
+                    <label class="error message">All fields are required</label>
+               }
+                  
+             }
+             @using (Html.BeginForm("AddCollege", "Student", FormMethod.Post))
+             {
+
+                      @Html.AntiForgeryToken()    {
+                      @Html.ValidationSummary(true){
+                                                       //////////////////////////////////////////////////////////
+                                                       ///////////////////////College Date///////////////////////
+                                                       //////////////////////////////////////////////////////////
+                      <div> 
+                      @Html.Label("College")
+                      </div>
+                      <div>
+                      @{ 
+                                                       if (Model.Student_info.type == "C" || Model.Student_info.type != "CC" || Model.Student_info.type == null)
+                                                       {
+                                    @Html.EditorFor(model => model.Student_info.College)
+                                                       }
+                                                       else if (Model.Student_info.type == "CC")
+                                                       {
+                                   <input id="mytex" class="form-control" type="text" name="Student_info.College" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Field isn't empty" placeholder="College Name" />
+                                                       }
+                               <script>
+                                   $('#mytex').popover();
+                               </script>
+                        }
+
+                      </div>
+                      @Html.Label("Start")
+                      @Html.DropDownList("Student_info.CollegeStartYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                 {
+                     Value = i.ToString(),
+                     Text = i.ToString()
+                 }), "-- Year --", new { @class = "styleCollegeStartYear" })    
+                       
+                           @Html.DropDownList("Student_info.CollegeStartMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleCollegeStartMonth" })
+                       
+                       @Html.DropDownList("Student_info.CollegeStartDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleCollegeStartDay" })  
+                      <br>
+                      @Html.Label("To")
+                     @Html.DropDownList("Student_info.CollegeEndYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                }), "-- Year --", new { @class = "styleCollegeEndYear" })    
+                       
+                           @Html.DropDownList("Student_info.CollegeEndMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleCollegeEndMonth" })
+                       
+                       @Html.DropDownList("Student_info.CollegeEndDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleCollegeEndDay" }) 
+                     
+                       
+                      <input class="btt" ID="btnUp" type="submit" value="Save"/>  
+                                                   }
+                                                  }
+             }
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <div class="modal fade" id="Uni1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        @{
+            if (Model.Student_info.type == "U" || Model.Student_info.type == "UU")
+            {
+                <a href ="@Url.Action("StudentProfile", "Student")">
+                  <button type="button" class="close" ><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                </a>
+            }
+            else if (Model.Student_info.type != "U" || Model.Student_info.type != "UU" || Model.Student_info.type != null)
+            {
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button> 
+            }
+               
+           }            <h4 class="modal-title" id="myModalLabel">Add Uni</h4>
+      </div>
+      <div class="modal-body">
+           @{
+                 
+               if (Model.Student_info.type == "U")
+               {
+                    <label class="error message">All fields are required</label>
+               }
+                  
+           }
+             @using (Html.BeginForm("AddUni", "Student", FormMethod.Post))
+             {
+                      @Html.AntiForgeryToken()    {
+                      @Html.ValidationSummary(true){
+                      <div>
+                     @Html.Label("University")
+                     </div>
+                    <div>
+@{ 
+                                                       if (Model.Student_info.type == "U" || Model.Student_info.type != "UU" || Model.Student_info.type == null)
+                                                       {
+                                    @Html.EditorFor(model => model.Student_info.Uni)
+                                                       }
+                                                       else if (Model.Student_info.type == "UU")
+                                                       {
+                                   <input id="mytex1" class="form-control" type="text" name="Student_info.Uni" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Field isn't empty" placeholder="University Name"/>
+                                                       }
+                               <script>
+                                   $('#mytex1').popover();
+                               </script>
+                        }                    </div>
+                     
+                    <div>
+                     @Html.DropDownList("Student_info.Degree", new List<SelectListItem> {
+                        new SelectListItem {Text="BS in ComputerScience",Value="BS in ComputerScience"},
+                        new SelectListItem {Text="Engineering",Value="Engineering"},
+                        new SelectListItem {Text="MBA",Value="MBA"},
+                        new SelectListItem {Text="MBBS",Value="MBBS"},
+                        new SelectListItem {Text="BS in Math",Value="BS in Math"},
+                        new SelectListItem {Text="Software Engineering",Value="Software Engineering"},
+                        new SelectListItem {Text="MSc in ComputerScience",Value="MSc in ComputerScience"},
+                        new SelectListItem {Text="MIT",Value="MIT"},
+                        new SelectListItem {Text="BS in English",Value="BS in English"},
+                        new SelectListItem {Text="BS in Chemistry",Value="Bs in Chemistry"},
+                        new SelectListItem {Text="BS in Physics",Value="Bs in Physics"},
+                        new SelectListItem {Text="MPhil",Value="MPhil"},
+                        new SelectListItem {Text="Phd",Value="Phd"},
+                    }, "--Degree--", new { @class = "style" })
+                    </div>
+                   @Html.Label("Start")
+            
+                      @Html.DropDownList("Student_info.UniStartYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                 {
+                     Value = i.ToString(),
+                     Text = i.ToString()
+                 }), "-- Year --", new { @class = "styleUniStartYear" })    
+                       
+                           @Html.DropDownList("Student_info.UniStartMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleUniStartMonth" })
+                       
+                       @Html.DropDownList("Student_info.UniStartDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleUniStartDay" })  
+                      
+                     <br>
+                      @Html.Label("To")
+                     @Html.DropDownList("Student_info.UniEndYear", Enumerable.Range(1990, 115).Select(i => new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString()
+                }), "-- Year --", new { @class = "styleUniEndYear" })    
+                       
+                           @Html.DropDownList("Student_info.UniEndMonth", Enumerable.Range(1, 12).Select(i => new SelectListItem
+                      {
+                          Value = i.ToString(),
+                          Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i)
+                      }),
+                      "-- Month --", new { @class = "styleUniEndMonth" })
+                       
+                       @Html.DropDownList("Student_info.UniEndDay", Enumerable.Range(1, 31).Select(i => new SelectListItem
+                  {
+                      Value = i.ToString(),
+                      Text = i.ToString()
+                  }), "-- Day --", new { @class = "styleUniEndDay" })
+
+                      <input class="btt bttprim" ID="btnUp" type="submit" value="Save Changes"/>  
+                                                   }
+                                                  }
+             }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    @* //****************************************************************@
+    @* //**************************CKEditor Editor***********************@
+    @* //****************************************************************@
+    
+    
+    <div class="modal fade" id="OverView">
+		<div class="modal-dialog modal-lg">
+			 <div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				    <h3 class="modal-title" style="color:#32bd32 ">OverView</h3>
+			    </div>
+				<div class="modal-body">
+                    @{
+                        if (Model.Student_info.type == "E")
+                        {
+                            <label class="error message">All fields are required</label>
+                        }
+                     }
+                    @{
+                        if (Model.objStu.Count == 0) { }
+                        else{
+                         using (Html.BeginForm("EditorOverView", "Student", new { Id = Model.objStu[0].Student_info.OverView_Id }, FormMethod.Post))
+                         {
+                             @Html.AntiForgeryToken(){
+                             @Html.ValidationSummary(true){
+                        
+                            <textarea class="ckeditor" name="Student_info.Overview" id="editor1" rows="10"></textarea>
+
+                              <input class="bt" ID="btnUp" type="submit" value="Submit"/> 
+                                                          }
+                                                     }
+                         }  
+                         }  
+                        }     
+				</div>
+                 <div class="modal-footer">
+					 <a href="" class="btn btn-default" data-dismiss="modal">Close</a>
+				 </div>
+			 </div>
+		</div>
+     </div>
+
+     <script>
+         function EditSchool() {
+             $('#School').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+         function EditCollege() {
+             $('#College').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+         function EditUni() {
+             $('#Uni').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+         function AddSchool() {
+             $('#School1').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+         function AddCollege() {
+             $('#College1').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+         function AddUni() {
+             $('#Uni1').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+         function AddOverView() {
+             $('#OverView').modal({ show: true, backdrop: 'static', keyboard: false })
+         }
+      </script>
+}
+
+@section img1
+{
+
+    <style>
+        .Name{
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #32bd32;
+            margin-left: 8%;
+            border-bottom: 1px solid #32bd32;
+            width: 41%;
+        }
+
+    </style>
+    @{
+        if (Model.Student_info.type != "Imag")
+        {
+            if ((Int32)ViewData["Imagecount"] == 0)
+            {
+                <div class="col-xs-10 image"> 
+                    <img  src="~/images/no-user-image-square.png" alt=""/>
+
+                </div>
+                <button type="button" class="btnn111 primary" data-toggle="modal" data-target="#modal-1">Edit</button>
+            }
+            else
+            {
+              
+                StudentImage stu_Image = new StudentImage();
+                stu_Image = (StudentImage)ViewData["ImageProfile"];
+                <div class=" col-xs-10 image"> 
+                    <img src="data:image/png;base64,@Convert.ToBase64String(stu_Image.Image_Data, 0, stu_Image.Image_Data.Length)" />  
+                </div>
+                <button type="button" class="btnn111 primary" data-toggle="modal" data-target="#modal-1">Edit</button>
+            }
+        }
+        else
+        {
+            if ((Int32)ViewData["Imagecount"] == 0)
+            {
+                <div class=" col-xs-10 image"> 
+                    <img  src="~/images/no-user-image-square.png" alt=""/>
+                   </div>
+                <button type="button" class="btnn111 primary" data-toggle="modal" data-target="#modal-1">Edit</button>
+                <script type="text/javascript">
+                    document.onload = $(document).ready(function () {
+                        $('#modal-1').modal({
+                            show: true,
+                            backdrop: 'static',
+                            keyboard: false
+                        })
+                    });
+                </script>
+            }
+            else
+            {
+                StudentImage stu_Image = new StudentImage();
+                stu_Image = (StudentImage)ViewData["ImageProfile"];
+                <div class=" col-xs-10 image"> 
+                <img src="data:image/png;base64,@Convert.ToBase64String(stu_Image.Image_Data, 0, stu_Image.Image_Data.Length)"  />  
+                </div>
+        
+                <button type="button" class="btnn111 primary" data-toggle="modal" data-target="#modal-1">Edit</button>
+                <script type="text/javascript">
+                    document.onload = $(document).ready(function () {
+                        $('#modal-1').modal({
+                            show: true,
+                            backdrop: 'static',
+                            keyboard: false
+                        })
+                    });
+                     </script>      
+            }
+        }
+     }
+      <script>
+          function AddImage() {
+              $("#modal-1").modal({
+                  backdrop: false,
+                  show: true,
+                  keyboard: false
+              })
+          }
+    </script>
+}
+@section Image
+{
+    <div class="modal fade" id="modal-1">
+		 <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Upload Picture</h3>
+				</div>
+			  <div class="modal-body">
+                 <label>Upload Your Picture Add a picture to bring a personal touch to your Profile.</label>
+				@using (Html.BeginForm("Image", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+             
+                    <input type="file" accept="image/*" name="ImageUpload" id="ImageUpload" onchange="showPreview(this)" />
+                    
+                    <img Id="impPrev" style="height:200px; width:200px;" />  
+                    <input class="bt" Id="btnUp" type="submit" value="Save It"/> 
+                }
+              </div>
+		  </div>
+	   </div>
+	</div>   
+    <script type="text/javascript">
+        function ShowPreview(input) {
+            if (input.files && input.files[0]) {
+                var ImageDir = new FileReader();
+                ImageDir.onload = function (e) {
+                    $('#impPrev').attr('src', e.target.result);
+                }
+                ImageDir.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

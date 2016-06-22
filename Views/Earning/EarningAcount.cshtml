@@ -1,0 +1,122 @@
+﻿@section Header
+{
+  @model StudentHelpp.Models.Tutor_Points  
+    }
+@{
+    ViewBag.Title = "Acount";
+    Layout = "~/Views/Shared/Question.cshtml";
+    }
+@section UserName
+{
+    @ViewData["UserName"]    
+}
+@section Prfile
+{
+    <li><a href="@Url.Action("TutorProfile", "Tutor")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("EarningAcount", "Earning")">Acount</a></li>    
+}
+@section Acount
+{
+    <li><a href="@Url.Action("EarningAcount","Earning")">Acount</a></li>    
+}
+@section btn{
+    <li><a href="@Url.Action("LogOut","STLogIn")">Log Out</a></li>
+}
+@section Profile
+{
+      <li><a href="@Url.Action("TutorProfile","Tutor")">Profile</a></li>
+}
+@section quest
+{
+    <li><a href="@Url.Action("BrowseQuest","Tutor")">New Questions</a></li>
+}
+@section Home{
+    <li><a href="@Url.Action("TutorAcount", "Tutor")">Home</a></li>    
+    }
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("AllQuestionsShownToTutorAnswerPostedByTutor","Tutor")">Questions</a></li>
+}
+<link href="~/CSS/Earning.css" rel="stylesheet" />
+
+<div class="row padding-top-m padding-bottom-m padding-left-intelligent padding-right-intelligent">
+
+    <div class="col-md-12 tutor-dashboard-heading">
+        <h1 class="col-sm-12">Earning Account</h1>
+        <br>
+        <div class="row col-sm-12 account-balance-total">
+            <h3>TOTAL Points</h3>
+            <p class="balance green-text" style="font-size:21px;"><span class="dollar-sign">Points-</span> @ViewData["TotalPoints"]</p>
+        </div>
+    </div>
+
+    <div class="col-md-12 tutor-dashboard-middle">
+        <div class="row col-sm-12 account-balance-row">
+            <div class="col-sm-3 account-balance">
+                <label>Tutor EARNED POINTS</label>
+                <p class="balance green-text"><span class="dollar-sign">Points-</span> @ViewData["TotalPoints"]</p>
+            </div>
+
+            <div class="col-sm-9 account-details">
+                <p>Earned by refund from AnswersPedia or through coupon codes. Can only be used for questions.</p>
+                <p class="red-text">Not withdrawable</p>
+            </div>
+        </div>
+
+        <div class="row col-sm-12 account-balance-total">
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-9 withdraw-button  text-right">
+            <button onclick="window.location='/Earning/WithDrwanMoneyRequest'" class="btn btn-blue">WITHDRAW EARNINGS</button>
+        </div>
+    </div>
+<div class="clear"></div>
+</div>
+    <br>
+
+
+    <div class="col-md-12 col-sm-12 row tutor-old-link" style="padding-left:0px;">
+        <p>* Payments will be put on hold while the account is suspended / banned.</p>
+    </div>
+    <br>
+
+
+    <div class=" col-md-12 tutor-accounts-table" style="margin-left:-15px; padding-left:0px;">
+        <div id="yw0" class="list-view">
+            <div class="items">
+            </div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Question</th>
+                    <th>Points</th>
+                     <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p style="color:#3DC431">Income</p>
+                        </td>
+                        <td>
+                            <span style="color:green;">@Model.S_Quest_Id</span> 
+                        </td>
+                        <td>
+                            <span style="color:green;">@Model.T_Points_Earned</span> 
+                        </td>
+                        <td>
+                            <span style="color:green;">@Model.T_Points_Earned_Time </span> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            s
+        </div> 
+    </div>
+
+</div>
+

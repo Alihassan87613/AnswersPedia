@@ -1,0 +1,160 @@
+﻿@section Header
+{
+    @model StudentHelpp.Models.ReportProblem
+}
+@{
+    ViewBag.Title = "Report Problem";
+    Layout = "~/Views/Shared/Question.cshtml";
+}
+@section Home{
+    <li><a href="@Url.Action("StudentAcount", "Student")">Home</a></li>    
+    }
+@section UserName
+{
+    @ViewData["UserName"]    
+}
+@section btn{
+    <li><a href="@Url.Action("LogOut", "STLogIn")">Log Out</a></li>
+}
+@section quest
+{
+    <li><a href="@Url.Action("PostQuestion", "Student")">Post Question</a></li>
+}
+@section Profile
+{
+      <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>
+}
+
+@section Prfile
+{
+    <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section Acount
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("PostedQuestion", "Student")">Questions</a></li>
+}
+
+
+<script src="~/ckeditor/ckeditor.js"></script>
+<script src="~/ckeditor/adapters/jquery.js"></script>
+<link href="~/CSS/contact.css" rel="stylesheet" />
+
+<div class="col-md-8">
+    <div id="div1" >
+        <br><br>
+        <p id="Success" class="desP">  </p>
+    </div>
+    <div class="col-md-7" id="hideDiv" >
+        <p id="Desplay" class="desP" >Please fill out your support request below</p>
+        <p id="CompleteIssue" class="desP"></p>
+
+        <div class="col-md-5">
+            
+            
+            <div id="emaildiv" class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-question"></i>
+                    <input id="emaill" type="text" name="IssueSummary" class="email2" placeholder="Issue Title..." />
+                </label>
+            </div>
+           <span id="Title_E" style="color:red; font-weight:600;"></span>
+
+            <div id="Questdiv" class="editor-field">
+                <label class="email-label2">
+                    <i class="fa fa-link"></i>
+                    <input id="Questt" type="text" name="IssueUrl" class="email2"  placeholder="Issue Url here... ?"/>
+                </label>
+            </div>   
+            <span id="Url_E" style="color:red; font-weight:600;"></span>
+
+            <div id="Problemdiv" class="row">
+                <textarea class="ckeditor" name="Body" id="editor1" rows="5"></textarea>   
+            </div>   
+            <span id="Body_E" style="color:red; font-weight:600;"></span>
+
+            
+            <input id="UpPwd" type="submit" value="Submit Problem" class="btn1 btn1-cc" />
+
+        </div>
+    </div>
+
+
+<script>
+    $('textarea.ckeditor').ckeditor(function () {
+    }, {
+        toolbar: [
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+            ['Undo', 'Redo'],
+            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor', 'Image', 'Smiley'],
+            ['Table', 'HorizontalRule', 'SpecialChar'],
+            ['Styles', 'BGColor']
+        ], toolbarCanCollapse: false, height: '200px', scayt_sLang: 'pt_PT', uiColor: '#EBEBEB'
+    });
+    $(document).ready(function () {
+        $("#UpPwd").on("click", function () {
+            var Data = { };
+            debugger;
+            Data.IssueUrl = $("#Questt").val(); // Issue Url
+            Data.IssueSummary = $("#emaill").val();// Issue Title
+            Data.Body = $('textarea.ckeditor').val();
+
+            if (Data.Problem_Title == "" || Data.Problem_Title == "Problem")
+            {
+                $('#Drop_E').text("Invalid Problem Selection");
+            }
+            else if (Data.IssueUrl == "")
+            {
+                $('#Url_E').text("InValid Url");
+            }
+            else if (Data.IssueSummary == "")
+            {
+                $('#Title_E').text("InValid Issue Summary");
+            }
+            else if (Data.Body == "") {
+                $('#Body_E').text("Field Is Required");
+            }
+            else{
+                $.ajax({
+                    
+                    url: "@Url.Action("Contact","Contacts")",
+                    type: "post",
+                    contentType: "application/json; charset=utf-8",
+                    data: '{Data: ' + JSON.stringify(Data) + '}',
+                    success: function (result) {
+                        
+                        if (result) {
+
+                            $('#hideDiv').hide("slow");
+                            $('#div1').addClass("col-md-7");
+
+                            $('#Success').text("Your Issue Has been submitted !!!");
+                            $('#Success').show("slow");
+                            
+                        }
+                        else
+                        {
+                            $('#CompleteIssue').text("InValid Try !!!");
+                        }
+       
+                    },
+                    error: function ()
+                    {
+                        $('#CompleteIssue').text("InValid Try 11!!!");
+                    }
+                });
+            }
+        });
+    });
+</script>
+</div>

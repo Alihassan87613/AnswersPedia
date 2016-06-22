@@ -1,0 +1,191 @@
+﻿@model StudentHelpp.Models.ViewModelAdmin
+
+@{
+    ViewBag.Title = "Admin-Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/CSS/main.css" rel="stylesheet" />
+<link href="~/CSS/Home.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<style>
+    .table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    color: black;
+}
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    color: black;
+}
+    .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-left: 0%;
+    padding-top: 20px;
+}
+</style>
+
+<h1 align="center" style="color:black;"> Admin Home</h1>
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Problems Requests</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">WithDraw Requests</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <div class="col-sm-12">
+        <div class="col-xs-11">
+			<h2 class="text-center">Recent Problems Requests</h2>
+		</div>
+        <table class="table" >
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Problem Title</th>
+                <th>Date & Time</th>
+                <th>Url</th>
+                <th>Body</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody id="HideTable">
+            @{
+                for (int k = 0; k < @Model.R_P.Count; k++)
+                {
+                    <tr data-question-id="153552" class="odd rowEntry">
+                     <td class="imgGridColumn padding-left-l no-mobile-display col-sm-2">
+                       @{ 
+                              if (@Model.R_P[k].S_Email != null)
+                              {
+                                @Model.R_P[k].S_Email
+                              }
+                              else
+                              {
+                                @Model.R_P[k].T_Email
+                              }
+                        }
+                     </td>
+                     <td class="blankColumnLeft col-sm-4">                    
+                        <div class="titleGridColumn title-mobile col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    @Model.R_P[k].IssueSummary
+                                </div>
+                            </div>
+                        </div>
+                     </td>
+                     <td class="dueGridColumn padding-right-l no-mobile-display col-sm-3">
+                        <div>
+                            <span class="due-date-text">@Model.R_P[k].ReportDate.ToString("MM/dd/yyyy") @Model.R_P[k].ReportTime.ToString("hh:mm tt")</span>
+                        </div>
+                     </td>
+                     <td class=" col-sm-3">
+                       <div>
+                            <a target="_blank"><span class="blue-text">@Model.R_P[k].IssueUrl</span></a>
+                       </div>
+                     </td>
+                     <td class=" col-sm-7">
+                       <div>
+                            <a target="_blank"><span class="blue-text">@Model.R_P[k].Body</span></a>
+                       </div>
+                     </td>
+                     <td class=" col-sm-1">
+                       <div>
+                        @{ 
+                             <a href="@Url.Action("UpdateRequestStatus","Admin", new { Problem_id=Model.R_P[k].Problem_Id})">Checked </a>
+                          }
+                       </div>
+                     </td>
+                    </tr>
+              }
+            }
+            </tbody>
+        </table>
+
+    </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <div class="col-sm-12">
+        <div class="col-xs-11">
+			<h2 class="text-center">Recent Problems</h2>
+		</div>
+        <table class="table" >
+            <thead>
+              <tr>
+                <th class="Name">Withdraw Email</th>
+                <th class="Quest_Title">Paypal Email</th>
+                <th class="time">Withdraw Points</th>
+                <th class="Points">Date & Time</th>
+                <th class="Points">Withdraw Money</th>
+                <th class="Points">Update</th>
+              </tr>
+            </thead>
+            <tbody id="HideTableQuestion">
+            @{
+              for (int k = 0; k < Model.W_Request.Count; k++ )
+              {
+                <tr data-question-id="153552" class="odd rowEntry">
+                <td class="imgGridColumn padding-left-l no-mobile-display col-sm-2">
+                   @Model.W_Request[k].Withdraw_Email
+                 </td>
+                 <td class="blankColumnLeft col-sm-2">                    
+                    <div class="titleGridColumn title-mobile col-sm-10">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                @Model.W_Request[k].Withdraw_Paypal_Email
+                            </div>
+                        </div>
+                    </div>
+                 </td>
+                 <td class="dueGridColumn padding-right-l no-mobile-display col-sm-2">
+                    <div>
+                        <span class="due-date-text">@Model.W_Request[k].WithDraw_Points</span>
+                    </div>
+                 </td>
+                 <td class=" col-sm-2">
+                   <div>
+                        <a target="_blank"><span class="blue-text">@Model.W_Request[k].Withdraw_date.ToString("MM/dd/yyyy") @Model.W_Request[k].Withdraw_time.ToString("hh:mm tt")</span></a>
+                   </div>
+                 </td>
+                 <td class=" col-sm-2">
+                   <div>
+                        <a target="_blank"><span class="blue-text">@Model.W_Request[k].Withdraw_Money</span></a>
+                   </div>
+                 </td>
+                 <td class=" col-sm-2">
+                   <div>
+                       <a href="@Url.Action("UpdateWithDrawnRequest", "Admin", new { T_Bal_Acount_Id=@Model.W_Request[k].Withdraw_Id})"><span class="heavy-text">Checked</span></a>
+                   </div>
+                 </td>
+               </tr>
+              }
+            }
+            </tbody>
+        </table>
+
+    </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+    $('#myTabs a[href="#profile"]').tab('show') // Select tab by name
+    $('#myTabs a:first').tab('show') // Select first tab
+</script>

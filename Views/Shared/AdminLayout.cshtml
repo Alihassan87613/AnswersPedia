@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+        <link href="~/Content/Site.css" rel="stylesheet" />
+      <script src="~/Scripts/jquery-2.1.4.js"></script>
+      <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+      <script src="~/Scripts/jquery.validate.min.js"></script>
+      <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+      <link href="~/CSS/bootstrap-theme.min.css" rel="stylesheet" />
+      <script src="~/Scripts/bootstrap-markdown.js"></script>
+      <link href="~/Content/bootstrap-markdown.min.css" rel="stylesheet" />      
+
+      <script src="~/Scripts/bootstrap.js"></script>
+
+      <link href="~/Content/bootstrap.css" rel="stylesheet" />
+      <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+      <link href="~/CSS/font-awesome.css" rel="stylesheet" />
+      <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+      <link href="~/CSS/Acount.css" rel="stylesheet" />
+      <link href="~/CSS/TutorAnswer.css" rel="stylesheet" />
+
+    <link href="~/CSS/Layout.css" rel="stylesheet" />
+</head>
+<body>
+      
+  <nav class="navbar navbar-default">
+          <div class="container">
+              <label class="navbar-brand">HelpStudent</label>
+              
+               <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        @RenderSection("UserName",true)  <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                       
+                            @RenderSection("btn",true)
+
+                      </ul>
+                    </li>
+                  </ul>
+          </div><!-- /.container-fluid -->
+            <ul class="nav nav-tabs">
+               @RenderSection("Home",true)
+            </ul>
+       </nav>
+          <div class="jumbotron">
+        
+        <div class="col-md-8">
+            @RenderBody()
+        </div>
+      <div class="col-md-3">
+        @RenderSection("Notification",true)        
+        @RenderSection("col_Modify_3",true)
+ 
+      </div>
+    </div>
+      <div class="col-lg-10">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="">Cookie Policy</a>
+      </div>
+</body>
+</html>
+

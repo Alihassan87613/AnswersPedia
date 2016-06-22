@@ -1,0 +1,92 @@
+﻿@RenderSection("Head",true)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
+       @Styles.Render("~/Content/css")
+       @Scripts.Render("~/bundles/modernizr")
+      <link href="~/Content/Site.css" rel="stylesheet" />
+
+      <script src="~/Scripts/jquery-2.1.4.js"></script>
+      <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+      
+      <script src="~/Scripts/jquery.validate.min.js"></script>
+      <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+      <link href="~/CSS/font-awesome.css" rel="stylesheet" />
+      <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+      <script src="~/Scripts/bootstrap.js"></script>    
+       <link href="~/Content/bootstrap.css" rel="stylesheet" />
+      <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+      
+      <link href="~/Content/bootstrap-markdown.min.css" rel="stylesheet" />
+            <script src="~/Scripts/bootstrap-markdown.js"></script>
+
+
+      <link href="~/CSS/Acount.css" rel="stylesheet" />
+      <link href="~/CSS/BrowseQuest.css" rel="stylesheet" />
+      <link href="~/CSS/Profile.css" rel="stylesheet" />
+      
+
+  </head>
+  <body>
+       <nav class="navbar navbar-default">
+          <div class="container">
+              <label class="navbar-brand" style="color:#333;">AnswersPedia</label>
+              
+               <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                    <a id="button" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @RenderSection("UserName",true)<span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        @RenderSection("Prfile",true)
+                        @RenderSection("acunt",true)
+                        <li role="separator" class="divider"></li>
+                        @RenderSection("btn",true)
+                      </ul>
+                    </li>
+                  </ul>
+          </div><!-- /.container-fluid -->
+           <ul class="nav nav-tabs">
+               @RenderSection("Home",true)
+               @RenderSection("Profile",true)
+               @RenderSection("quest",true)
+               @RenderSection("AnswerQuest",true)
+                 
+                @RenderSection("Acount",true)
+                <li><a href="@Url.Action("Contact","Contacts")">Contact Us</a></li>
+            </ul>
+ 
+    </nav>
+
+
+      <div class="jumbotron">
+              <div class="col-md-2">
+                @RenderSection("img1",true)   
+                @RenderSection("leftSide",true)       
+              </div>
+              <div class="col-md-6"> 
+                   @RenderSection("Details",true)
+              </div>
+              <div class="col-md-3">
+                @RenderSection("Notification",true)
+               </div>
+          </div>
+
+
+
+
+
+    @* //****************************************************************@
+    @* //***************************POP UP IMAGE***************************@
+    @* //****************************************************************@
+     @RenderSection("Image",true)  
+  </body>
+    @RenderBody()
+    
+</html>

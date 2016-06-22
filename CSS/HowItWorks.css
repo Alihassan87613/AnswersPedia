@@ -1,0 +1,145 @@
+﻿body {
+}
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+    float: left;
+}
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.nav {
+    margin-bottom: 0px;
+    padding-left: 0px;
+    list-style: outside none none;
+}
+.col-sm-3 {
+    width: 25%;
+}
+#header {
+    background-image: url("../images/tutor_header.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.hiw-header {
+    margin-top: 60px;
+    border-radius: 2px;
+    padding: 30px 15px;
+}
+.small-nav {
+    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    list-style-type: none;
+    border-radius: 2px;
+    background-color: #333;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.24);
+}
+.small-nav li {
+}
+.nav-stacked > li {
+    float: none;
+}
+.nav > li {
+    position: relative;
+    display: block;
+}
+.small-nav li a {
+    color: #FFF;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+a {
+    color: #337AB7;
+    text-decoration: none;
+}
+.col-sm-8 {
+    width: 66.6667%;
+}
+.light-txt {
+    color: #FFF;
+}
+h2 {
+    font-size: 24px;
+    line-height: 39px;
+}
+h2, .p1 {
+    font-weight: 300;
+}
+.big-txt {
+    font-weight: 300;
+    font-size: 45px;
+    line-height: 73px;
+}
+.padding-bottom-m {
+    padding-bottom: 30px;
+}
+.margin-top-m {
+    margin-top: 30px;
+}
+h4, p, .p3 {
+    font-size: 14px;
+    line-height: 23px;
+}
+p {
+    margin: 0px 0px 10px;
+}
+h4 {
+    letter-spacing: 0.4px;
+}
+h4, p, .p3 {
+    font-size: 14px;
+    line-height: 23px;
+}
+h3, h4 {
+    text-transform: uppercase;
+}
+h4, .p3 {
+    font-weight: 600;
+}
+h4, .h4 {
+    font-size: 18px;
+}
+h4, .h4, h5, .h5, h6, .h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h4, p, .p3 {
+    font-size: 14px;
+    line-height: 23px;
+}
+p {
+    margin: 0px 0px 10px;
+}
+
+
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.col-md-12 {
+    width: 100%;
+    background-color: #000;
+    height: 150px;
+    margin-top: 10%;
+}
+
+.col-md-12 p {
+    color: #32bd32;
+    font-size: 1em;
+    padding-top: 4%;
+    padding-left: 45%;
+    font-weight: 700;
+}
+.col-md-12 a {
+    color: #fff;
+    font-size: 1em;
+    padding-left: 48%;
+    font-weight: 700;
+}

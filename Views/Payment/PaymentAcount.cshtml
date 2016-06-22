@@ -1,0 +1,331 @@
+﻿@section Header
+{
+    @model StudentHelpp.Models.ViewModelStudentPoints
+}
+@{
+    ViewBag.Title = "Acount";
+    Layout = "~/Views/Shared/Question.cshtml";
+    }
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/Question.cshtml";
+}
+
+@section Home{
+    <li><a href="@Url.Action("StudentAcount", "Student")">Home</a></li>    
+    }
+@section UserName
+{
+    @ViewData["UserName"]    
+}
+@section btn{
+    <li><a href="@Url.Action("LogOut","STLogIn")">Log Out</a></li>
+}
+@section quest
+{
+     <li id="New_Quest"><a onclick="Redirect()">Post Question</a></li>
+     <script>
+              var points = @ViewData["Total_Points"]
+              function Redirect() {
+                  if (points < 10) {
+                      window.location = "/Payment/PaymentAcount";
+                  }
+                  else {
+                      window.location = "/Student/PostQuestion";
+                  }
+              }
+      </script>
+}
+@section Profile
+{
+      <li><a href="@Url.Action("StudentProfile","Student")">Profile</a></li>
+}
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("PostedQuestion","Student")">Questions</a></li>
+}
+@section Prfile
+{
+    <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section Acount
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+<link href="~/CSS/Earning.css" rel="stylesheet" />
+
+<div class="row padding-top-m padding-bottom-m padding-left-intelligent padding-right-intelligent">
+
+    <span id="pointsStatus">
+        @{
+            if((Int32)@ViewData["Total_Points"] < 10)
+            {
+               <span style="color:red; font-size:18px" align="center"> Your Available Points are less than 10 Points <br>
+                   Please Buy more points to post Question Thankyou</span>
+            }
+        
+        }
+    </span>
+
+    <div class="tab-pane" id="Membrship">
+        <ul class="MembershipPlans">
+                        <li class="MembershipPlan is-annual">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                       <h3 class="MembershipPlan-title">
+                                         Starting offer
+                                       </h3>
+                                       <span class="MembershipPlan-price">$30 </span>
+                                       <span class="MembershipPlan-duration">per month</span>
+                                        
+                                        <span class="MembershipPlan-price">Points 100 </span>
+                                        <!-- NEW -->
+                                <div class="MembershipPlan-cta">
+                                 <button class="btn btn-small btn-info " id="Starting">Buy</button>
+                                 <span id="start" style="font-size:18px; color:red;"></span>
+                                </div>
+                            </div>
+                        </header>
+                            </div>
+                        </li>
+                         <script>
+                             
+                             
+                             $('#Starting').on("click", function () {
+                                 debugger;
+                                 var data = {};
+                                 data.Points_Buyed = '100';
+                                 data.S_Email = '@Model.S_Point.S_Email'
+                                $.ajax({
+                                    url: '/Payment/GetPayment',
+                                    method: 'post',
+                                    contentType: "application/json; charset=utf-8",
+                                    data: '{data: ' + JSON.stringify(data) + '}',
+                                    success: function (data1) {
+                                        if (!data1)
+                                        {
+                                            $('#start').text('Invalid Try Again');
+                                        }
+                                        else {
+                                            $('#pointsStatus').empty();
+
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+
+                        <li class="MembershipPlan is-monthly is-hidden">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                        <h3 class="MembershipPlan-title">
+                                            Few Days Offer
+                                        </h3>
+                                            <span class="MembershipPlan-price"> Free Membership </span>
+                                            <span class="MembershipPlan-duration">per month</span>
+
+                                            <span class="MembershipPlan-price">Points 30</span>
+                                            <!-- NEW -->
+                                            <div class="MembershipPlan-cta">
+                                              <button class="btn btn-small btn-info" id="Freee">Get Free</button>
+                                              <span id="fr" style="font-size:18px; color:red;"></span>
+
+                                            </div>
+                                    </div>
+                                </header>
+                            </div>
+                        </li> 
+                         <script>
+                             
+                             $('#Freee').on("click", function () {
+                                 var data = {};
+                                 data.Points_Buyed = "30";
+                                 data.S_Email = '@Model.S_Point.S_Email'
+                                 debugger;
+                                $.ajax({
+                                    url: '/Payment/Free',
+                                    method: 'post',
+                                    contentType: "application/json; charset=utf-8",
+                                    data: '{data: ' + JSON.stringify(data) + '}',
+                                    success: function (data1) {
+                                        if (!data1) {
+                                            $('#fr').text('Invalid Try Again');
+                                        } else {
+                                            $('#pointsStatus').empty();
+
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+
+                        <li class="MembershipPlan is-annual is-monthly is-hidden">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                        <h3 class="MembershipPlan-title">
+                                            Intro
+                                        </h3>
+                                       <span class="MembershipPlan-price"> $50</span>
+                                       <span class="MembershipPlan-duration">per month</span>
+                                       <span class="MembershipPlan-price">Points 190</span>
+
+                                        
+                                        <!-- NEW -->
+                                    <div class="MembershipPlan-cta">
+                                        <button class="btn btn-small btn-info " id="Intro">Buy</button>
+                                        <span id="intr" style="font-size:18px; color:red;"></span>
+
+                                    </div>
+                                </div>
+                                </header>
+                            </div>
+                        </li>
+                         <script>
+                             
+                             $('#Intro').on("click", function () {
+                                 debugger;
+
+                                 var data = {};
+                                 data.Points_Buyed = '190';
+                                 data.S_Email = '@Model.S_Point.S_Email'
+                                   $.ajax({
+                                       url: '/Payment/GetPayment',
+                                       method: 'post',
+                                       contentType: "application/json; charset=utf-8",
+                                       data: '{data: ' + JSON.stringify(data) + '}',
+                                       success: function (data1) {
+                                           if (!data1) {
+                                               $('#intr').text('Invalid Try Again');
+
+                                           }
+                                           else
+                                           {
+                                               $('#pointsStatus').empty();
+                                               
+                                           }
+                                       }
+                                   });
+                               });
+                        </script>            
+                        <li class="MembershipPlan  is-annual">
+                            <div class="MembershipPlan-inner">
+                                <header class="MembershipPlan-header">
+                                    <div class="MembershipPlan-header-inner">
+                                        <h3 class="MembershipPlan-title">
+                                            Basic
+                                        </h3>
+                                            <span class="MembershipPlan-price"> $80 </span>
+                                            <span class="MembershipPlan-duration">per month</span>
+                                            <span class="MembershipPlan-price">Points 350 </span>
+                                            <!-- NEW -->
+                                            <div class="MembershipPlan-cta">
+                                               <button class="btn btn-small btn-info " id="Basic">Buy</button>
+                                               <span id="basi" style="font-size:18px; color:red;"></span>
+
+                                            </div>
+                                    </div>
+                                </header>
+                            </div>
+                        </li>
+                         <script>
+                             
+                             $('#Basic').on("click", function () {
+
+                                 debugger;
+                                 var data = {};
+                                 data.S_Email = '@Model.S_Point.S_Email'
+                                 data.Points_Buyed = '350';
+                                 $.ajax({
+                                     url: '/Payment/GetPayment',
+                                     method: 'post',
+                                     contentType: "application/json; charset=utf-8",
+                                     data: '{data: ' + JSON.stringify(data) + '}',
+                                     success: function (data1) {
+                                         if (!data1) {
+                                             $('#basi').text('Invalid Try Again');
+                                         } else {
+                                             $('#pointsStatus').empty();
+
+                                         }
+                                     }
+                                 });
+                             });
+                        </script>
+        </ul>
+    </div>
+
+    <div class="col-md-12 tutor-dashboard-heading">
+        <h1 class="col-sm-12">My Account Details</h1>
+        <br>
+        <div class="row col-sm-12 account-balance-total">
+            <h3>TOTAL POINTS</h3>
+            <p class="balance green-text" style="font-size:21px;"><span class="dollar-sign">Points</span>
+                <span id="total">  @ViewData["Total_Points"]</span>
+                <span id="totalShow"> </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-12 tutor-dashboard-middle">
+        <div class="row col-sm-12 account-balance-row">
+            <div class="col-sm-3 account-balance">
+                <label>BALANCE</label>
+                <p class="balance green-text"><span class="dollar-sign">$ </span> 0</p>
+             </div>
+            <div class="col-sm-9 account-details">
+                <p>Remaining Points in your account.</p>
+                <p class="red-text">Not withdrawable</p>
+             </div>
+        </div>
+        <div class="row col-sm-12 account-balance-total">
+        <div class="col-sm-3"></div>
+        </div>
+<div class="clear"></div>
+</div>
+    <br>
+    <br>
+    <div class=" col-md-12 tutor-accounts-table" style="margin-left:-15px; padding-left:0px;">
+        <div id="yw0" class="list-view">
+            <div class="items">
+            </div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Bal_Id</th>
+                    <th>Points</th>
+                     <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if(Model.listt != null){
+                        for (int k = 0; k < Model.listt.Count;k++ ){
+                    <tr>
+                        <td>
+                            <p style="color:#3DC431">Points</p>
+                        </td>
+                        <td>
+                            <span style="color:green;">@Model.listt[k].S_Quest_id</span> 
+                        </td>
+                        <td>
+                            <span style="color:green;"> @Model.listt[k].Points_Used used</span> 
+                        </td>
+                        <td>
+                            <span style="color:green;">@Model.listt[k].Points_Used_Date.ToString("MM/dd/yyyy") @Model.listt[k].Points_Used_Time.ToString("hh:mm")</span> 
+                        </td>s
+                    </tr>}}}
+                </tbody>
+            </table>
+        </div> 
+    </div>
+
+</div>
+

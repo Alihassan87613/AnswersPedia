@@ -1,0 +1,329 @@
+﻿body {
+    background-color: #fff;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: 12%;
+    width: 85%;
+}
+input {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 220px;
+}
+
+.tutor-dashboard-heading h1 {
+    padding: 0;
+}
+.tutor-dashboard-middle {
+    padding-top: 20px;
+}
+.tutor-dashboard-middle .account-balance-row {
+    padding: 0px;
+}
+.tutor-dashboard-middle .account-balance-row .account-balance {
+    padding-top: 5px;
+}
+
+.green-text {
+    color: #1DB954!important;
+    font-size: 21px;
+}
+ .tutor-dashboard-middle .account-balance-row .account-balance label {
+    white-space: nowrap;
+    font-size: 10px;
+    font-weight: 400;
+}
+ .tutor-dashboard-middle .account-balance-row .account-balance .balance {
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: 400;
+}
+ .tutor-dashboard-middle .account-balance-row .account-details {
+    background-color: #e7e7e2;
+    margin: 5px 0px 5px 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.tutor-dashboard-middle .account-balance-row .account-details p {
+    color: #939393;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+.red-text {
+    color: #FF2A5B!important;
+}
+.green-text {
+    color: #1DB954!important;
+}
+.red-text {
+    color: #FF2A5B!important;
+}
+.tutor-dashboard-middle .withdraw-button {
+    padding-right: 0px;
+}
+.tutor-dashboard-middle .withdraw-button button {
+    margin-top: 20px;
+    width: 250px;
+}
+.tutor-dashboard-middle .withdraw-button button {
+    margin-top: 20px;
+    width: 250px;
+}
+.col-sm-9 {
+    width: 60%;
+}
+.table {
+    width: 90%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.email2 {
+    padding-left: 10px;
+    width: 270px;
+    margin-left: 20px;
+}
+email2:hover {
+    border:2px solid #32bd32; 
+}
+.email2:focus {
+    outline: none;
+    border-color: #32bd32;
+    box-shadow: 0 0 10px #32bd32;
+}
+
+.editor-label {
+    margin-top :80px;
+    margin-left:10%;
+    margin-bottom:15px;
+
+}
+.editor-field {
+    margin-left:15%;
+    margin-bottom:15px;
+
+}
+#botom {
+    margin-bottom:15%;
+}
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #fff;
+}
+.col-md-3 {
+    width: 0%;
+    margin-top: 0%;
+    margin-left: 0%;
+    border: 0px solid #fff;
+    height: 0%;
+    box-shadow: 0px 0 0px 0px rgba(217, 217, 217, 0.8), 0px 0 0px 0px rgba(217, 217, 217, 0.8);
+    background-color: #f3f3f3;
+}
+.col-md-8 {
+    width: 90.66666667%;
+}
+.MembershipPlans {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 80px;
+}
+.MembershipPlan {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-flex-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+.MembershipPlan-inner {
+    width: 100%;
+}
+.MembershipPlan-header {
+    text-align: center;
+    color: #1f2836;
+}
+.MembershipPlan-header-inner {
+    padding: 40px 40px 10px;
+    min-height: 310px;
+}
+.MembershipPlan-title {
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 26px;
+}
+.MembershipPlan-price {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 48px;
+    font-size: 3rem;
+}
+.MembershipPlan-duration {
+    display: block;
+    margin-bottom: 24px;
+}
+.MembershipPlan-cta .btn {
+    width: 100%;
+}
+.btn-info {
+    background-color: #0088cf;
+    background-image: none;
+    color: #F7F7F7;
+    border: 1px solid #0088cf;
+    text-shadow: 0 -1px transparent;
+    font-weight: 700;
+    background: linear-gradient(to bottom,#17a1e6 0,#0088cf 100%);
+}
+.btn-small {
+    padding: 6px 13px;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.btn {
+    background-color: #F0F0F0;
+    background-image: none;
+    color: #4D525B;
+    border: 1px solid #BEC0C2;
+    text-shadow: 0 -1px transparent;
+    font-weight: 700;
+    background: linear-gradient(to bottom,#fff 0,#F0F0F0 100%);
+    padding: 8px 18px;
+    font-size: 15px;
+    border-radius: 3px;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    line-height: 18px;
+    cursor: pointer;
+    text-align: center;
+    background-clip: border-box;
+}
+.MembershipPlan-cta-secondary {
+    margin-top: 12px;
+    font-size: 14px;
+    font-size: .875rem;
+}
+
+.pinky-template .is-hidden {
+    display: none!important;
+}
+small {
+    font-size: 12px;
+}
+.btn-primary {
+    background-color: #f77d0e;
+    background-image: none;
+    color: #F7F7F7;
+    border: 1px solid #f77d0e;
+    text-shadow: 0 -1px transparent;
+    font-weight: 700;
+    background: linear-gradient(to bottom,#fc8c14 0,#f77d0e 100%);
+}
+.btn-mini {
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 400;
+}
+.btn {
+    background-color: #F0F0F0;
+    background-image: none;
+    color: #4D525B;
+    border: 1px solid #BEC0C2;
+    text-shadow: 0 -1px transparent;
+    font-weight: 700;
+    background: linear-gradient(to bottom,#fff 0,#F0F0F0 100%);
+    padding: 8px 18px;
+    font-size: 15px;
+    border-radius: 3px;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    line-height: 18px;
+    cursor: pointer;
+    text-align: center;
+    background-clip: border-box;
+}
+.btn.btn-plain, .btn.btn-plain-alt {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+    border-style: solid;
+    border-width: 1px;
+}
+.btn-plain {
+    background-color: transparent;
+    background-image: none;
+    color: #4D525B;
+    border: 1px solid #75787d;
+    text-shadow: 0 -1px transparent;
+    font-weight: 700;
+    background: linear-gradient(to bottom,transparent 0,transparent 100%);
+}
+.btn-mini {
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 400;
+}
+.MembershipPlan-billingNote {
+    margin-top: 12px;
+    font-size: 13px;
+    font-size: .8125rem;
+    line-height: 1.4;
+    font-weight: 400;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

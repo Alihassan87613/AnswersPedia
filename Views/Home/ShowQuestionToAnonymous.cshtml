@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "ShowQuestionToAnonymous";
+}
+
+<h2>ShowQuestionToAnonymous</h2>
+
+      <link href="~/Content/Site.css" rel="stylesheet" />
+      <script src="~/Scripts/jquery-2.1.4.js"></script>
+      <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+      <script src="~/Scripts/jquery.validate.min.js"></script>
+      <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>     
+
+      <script src="~/Scripts/bootstrap.js"></script>
+
+      <link href="~/Content/bootstrap.css" rel="stylesheet" />
+      <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+      <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+      <link href="~/CSS/Acount.css" rel="stylesheet" />
+      <link href="~/CSS/TutorAnswer.css" rel="stylesheet" />
+    <link href="~/CSS/stylesheet.css" rel="stylesheet" />
+    <link href="~/CSS/showQuestion.css" rel="stylesheet" />
+    <link href="~/CSS/ggpopover.css" rel="stylesheet" />
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+    <script src="~/Scripts/ggpopover.js"></script>
+
+
+<div class="col-md-12">
+                  <div class="row">
+                    @{ 
+        //***************Student IMAGE**********************//
+                      <div class="col-md-1" id="pic" data-toggle="popover"
+                                                                    data-placement="auto top"
+                                                                    data-arrowcolor="#2ECC71"
+                                                                    data-bordercolor="#16A085"
+                                                                    data-title-backcolor="#1ABC9C"
+                                                                    data-title-bordercolor="#27AE60"
+                                                                    data-title-textcolor="#fff"
+                                                                    data-content-backcolor="#2ECC71"
+                                                                    data-content-textcolor="#fff"
+                                                                    title="@ViewData["UserName"]"
+                                data-content="Questions: @ViewData["QuestionCnt"]  Selected Ans: @ViewData["Select_Per"]%">
+                          <script type="text/javascript">
+                              $(document).ready(function () {
+                                      $('[data-toggle="popover"]').ggpopover();
+                              });
+                               </script>
+                            @{
+                                if ((Int32)ViewData["Imagecount"] == 0)
+                                {
+                                     <img class="img-circle" src="~/images/no-user-image-square.png"  />
+                                     <a href="@Url.Action("StudentPublicProfile", "Student", new { user = (string)@ViewData["UserName"] ,Cur_User= @Model.stu_Question.S_Email })">                                     
+                                          <button type="submit" class="bttnn primary imUserName">@ViewData["UserName"]</button>
+                                     </a> 
+                                }
+                                else
+                                {                 
+                                      <img  class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(Model.student_image.Image_Data, 0, Model.student_image.Image_Data.Length)"  />  
+                                      <a href="@Url.Action("StudentPublicProfile", "Student", new { user = (string)@ViewData["UserName"] ,Cur_User= @Model.stu_Question.T_Email })">                                     
+                                          <button type="submit" class="bttnn primary imUserName">@ViewData["UserName"]</button>
+                                     </a> 
+                                
+                                }
+                            }
+                        </div>
+        //*************END STUDENT IMAGE *******************//
+        // *********** QUESTION SHOW************************//
+                      <div class="col-md-11"> 
+                          <div class="model-Header"> 
+                              <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <h3 class="modal-title" style="color:#32bd32 ">Question</h3>
+                                </div>
+                                <div class="col-md-8">
+                                @{
+                                      DateTime dtStartTime = Model.stu_Question.S_Time_Of_Post_Quest;
+                                      TimeSpan TS = new TimeSpan(dtStartTime.Hour, dtStartTime.Minute, dtStartTime.Second);
+                                      DateTime newDT = Model.stu_Question.S_Date_Of_Post_Quest + TS;
+                                      newDT.AddDays(3);
+                                      if (newDT < DateTime.Today && Model.stu_Question.T_Answer_Selected != 0)
+                                      {
+                                          <a href="@Url.Action("EditQuestion", "Student", new { QuestId = Model.stu_Question.S_Quest_Id })">
+                                            <input class="btn13 btn-success" type="submit" value="Edit Question" />
+                                          </a>
+                                      }   
+                                      if (Model.stu_Question.T_Answer_Selected == 0)
+                                      {
+                                            DateTime today1 = DateTime.Today;
+                                            <h4 class="Name" > Answer has been selected <br> At @today1.ToString("HH:mm:ss tt MM/dd/yyyy") </h4>
+                                      }
+                                      if (newDT > DateTime.Today && Model.stu_Question.T_Answer_Selected != 0)
+                                      {
+                                          <a href="@Url.Action("DeleteQuestion", "Student", new { QuestId = Model.stu_Question.S_Quest_Id })">
+                                            <input class="btn13 btn-success" type="submit" value="Delete Question" />
+                                          </a>
+                                      }
+                                 }
+                                </div>       
+	                          </div>
+                            </div>
+            
+                          <div class="col-md-12">  
+                           <div class="disp">
+                               <span class="Questi">
+                                @Html.Raw(HttpUtility.HtmlDecode(Model.stu_Question.S_Question)) 
+                               </span>
+                           </div>
+                           <div class="pramtrs">
+            
+                                @Html.Label("Points Offered : ")
+                               <span class="dispay">
+                                 @Model.stu_Question.S_Points_Offered
+                               </span>
+                                @Html.Label("Subject : ")
+                                          @{
+        for (int i = 0; i < 6; i++)
+        {
+            if (Model.student_subject[i].Checked == true)
+            {
+                                                        <span class="dispay">
+                                                            @Model.student_subject[i].Subject_Name
+                                                        </span>
+            }
+        }
+                                            }
+                               @Html.Label("Answer Count : ")
+                               <span class="en">
+                                 @Model.stu_Question.S_Quest_Answer_Count
+                               </span>
+                  
+                               <br>
+
+                               @Html.Label("Question End Date : ")
+                               <span class="dispay">
+                                 @Model.stu_Question.S_Quest_End_Date.ToString("MM/dd/yyyy")
+                               </span>
+                               @Html.Label("Posted Date: ")
+                               <span class="dispay">
+                                    @Model.stu_Question.S_Date_Of_Post_Quest.ToString("MM/dd/yyyy")
+                               </span>
+                               @Html.Label("Posted Time: ")
+                               <span class="en">
+                                    @Model.stu_Question.S_Time_Of_Post_Quest.ToString("hh:mm tt")
+                               </span>
+                            </div>
+                          </div>
+                     </div>
+        //************ QUESTION SHOW END *******************//
+                    }                   
+               </div>
+            </div>
+    
+      @*Answer ki Pic us pe Button*@

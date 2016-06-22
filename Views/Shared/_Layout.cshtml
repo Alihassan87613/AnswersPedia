@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/CSS/Layout.css" rel="stylesheet" />
+</head>
+<body>
+   <nav class="nvbr nvbr-dflt navbar-variable-top">
+            <div class="label-group">
+              <span class="label-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pencil"> </span></span>
+              <label class="color">AnswersPedia</label> 
+            </div>
+            <p class="navbartext navbarright">
+               @RenderSection("btn",false)
+            </p>
+    </nav>
+      @RenderBody()
+</body>
+</html>
+

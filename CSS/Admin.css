@@ -1,0 +1,69 @@
+﻿body {
+}
+.btn1 {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    height: 45px;
+    width: 54%;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: 4%;
+}
+.btn2 {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    height: 45px;
+    width: 54%;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: 22%;
+}
+
+.col-md-4 {
+    width: 60.3333%;
+    border-left: 0px solid #BDC5C4;
+    margin-left: 20%;
+    padding-left:0PX;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #FFF;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    margin-left: 0px;
+    padding-top: 0px;
+}
+.email-label2 .fa-user {
+    color: #6E6E6E;
+    top: 6px;
+    left: 8px;
+    position: absolute;
+    font-size: 26px;
+    margin-left: 20px;
+}

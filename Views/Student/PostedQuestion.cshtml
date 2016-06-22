@@ -1,0 +1,245 @@
+﻿@section Header{
+     @using PagedList;
+     @using PagedList.Mvc;
+     @model IPagedList<StudentHelpp.Models.ViewModelStudentQuestions>
+}
+@{
+    <title>Posted Questions</title>
+    Layout = "~/Views/Shared/Question.cshtml";
+}
+@section Home
+{
+    <li><a href="@Url.Action("StudentAcount", "Student")">Home</a></li>    
+}
+
+@section UserName
+{
+    @ViewData["UserName"]    
+}
+@section btn{
+    <li><a href="@Url.Action("LogOut","STLogIn")">Log Out</a></li>
+}
+@section quest
+{
+             <li id="New_Quest"><a onclick="Redirect()">Post Question</a></li>
+          <script>
+              var points = @ViewData["Total_Points"]
+              function Redirect(){
+                 
+                  if (points < 10) {
+                      window.location = "/Payment/PaymentAcount";
+                  }
+                  else
+                  {
+                      window.location = "/Student/PostQuestion";
+                  }
+              }
+      </script>
+
+}
+@section Profile
+{
+      <li><a href="@Url.Action("StudentProfile","Student")">Profile</a></li>
+}
+@section AnswerQuest
+{
+    <li><a href="@Url.Action("PostedQuestion","Student")">Questions</a></li>
+}
+@section Prfile
+{
+    <li><a href="@Url.Action("StudentProfile", "Student")">Profile</a></li>    
+}
+@section acunt
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section Acount
+{
+    <li><a href="@Url.Action("PaymentAcount", "Payment")">Acount</a></li>    
+}
+@section col_Modify_3
+{
+    <div class="col-xs-2">
+        <div class="col-xs-1">
+            <label class="QuestSidebar">Questions</label>
+            <br>
+            <label class="NumSidebar">5000</label>
+        </div>
+        <div class="col-xs-1">
+            <label class="QuestSidebar">Tutors</label>
+            <br>
+            <label class="NumSidebar">500</label>
+        </div>
+        <div class="col-xs-5">
+        <label class="Subject">+ComputerScience</label>
+        <br>
+        <label class="Subject">+ Mathematics</label>
+        <br>
+        <label class="Subject">+ Engineering</label>
+        <br>
+        <label class="Subject">+ MBBS</label>
+        <br>
+        <label class="Subject">+ English</label>
+        <br>
+        <label class="Subject">+ Urdu</label>
+    </div>
+    </div>
+}
+
+@section Notification
+{
+    <div class="colm">
+       <label  class="headd">
+          Inbox
+       </label>
+       <br>
+       <label class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["QuestionCnt"])</span>
+           Questions
+       </label>
+       <br>
+       <label  class="list-group-item">
+           <span class="badge">@Convert.ToInt32(ViewData["TotalPoints"])</span>
+           Points
+       </label>
+       
+    </div>       
+}
+
+
+<link href="~/CSS/Acount.css" rel="stylesheet" />
+<link href="~/CSS/demo.css" rel="stylesheet" />
+<link href="~/CSS/sidebar-collapse.css" rel="stylesheet" />
+<link href="~/CSS/PageList.css" rel="stylesheet" />
+
+   @{
+         <div class="col-md-12">
+            <div class="col-md-7" id="colmd7" style="display:block;">
+                <div class="col-xs-12">
+                    <div class="col-sm-3">
+                        <label class="Questt">All Questions</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+@*                        <input type="text" class="form-control" placeholder="Search">*@
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="editor-field">
+                            <label class="email-label2">
+                                @Html.DropDownList("Categories", new List<SelectListItem>{
+                                new SelectListItem{Text="Mathematics" , Value="Mathematics",},
+                                new SelectListItem{Text="Physics" , Value="Physics"},
+                                new SelectListItem{Text="Computer Science" , Value="Computer Science",},
+                                new SelectListItem{Text="Chemistry" , Value="Chemistry"},
+                                new SelectListItem{Text="English" , Value="English",},
+                                new SelectListItem{Text="Urdu" , Value="Urdu"}
+                                }, "Select Categories", new { @class= "style"})
+                    
+                           </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-11">
+                    <ul class="nav1 nav-pills">
+                      <li role="presentation" class="disabled"><a href="#NewQuestion">Posted Question</a></li>
+                    </ul>
+                </div>
+                <div id="NewQuestion">
+                @{
+                if((Int32)ViewData["countQuest1"] == 0 ){}
+                else
+                {
+                    for (int z = 0; z < Model.Count; z++ )
+                    {
+                        <div class="col-lg-12" >
+                            <div class="col-lg-7">
+                                <div class="col-sm-7">
+                                    <label class="Title">
+                                           <a href="@Url.Action("ShowQuestionToStudentWhoPostIt", "Student", new { QuestId=Model[z].stu_Question.S_Quest_Id , title=Model[z].stu_Question.S_Title})">
+                                                 @Html.DisplayFor(model => model[z].stu_Question.S_Title)
+                                           </a>
+                                    </label>
+                                    <br>
+                                    <label class="QuestBody">
+                                        @Model[z].stu_Question.S_Question
+                                    </label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="col-md-1">
+                                    @{
+                                        if (Model[z].img.valu == 0)
+                                        {
+                                        
+                                            <img class="img-circle" src="~/images/no-user-image-square.png"  />
+                                        }
+                                        else
+                                        {
+                                             <img class="img-circle" src="data:image/png;base64,@Convert.ToBase64String(Model[z].StuImage.Image_Data, 0, Model[z].StuImage.Image_Data.Length)"   />  
+                                        }
+                                    }
+                                    </div>
+                                    <div class="col-xs-6">
+                                        
+                                        @Html.Label("Question Id : ", new { @class="en"})
+                                        <span class="en">
+                                            @Html.DisplayFor(model => model[z].stu_Question.S_Quest_Id)
+                                        </span>
+                                        <br>
+                                        @Html.Label("Points : " , new { @class="en"})
+                                        <span class="dispay">
+                                            @Html.DisplayFor(model => model[z].stu_Question.S_Points_Offered)
+                                        </span>
+
+                                         
+                                         @{
+                                            @Html.Label("Subject : " , new { @class="en"})
+                                            for (int i = 0; i < 6;i++ )
+                                            {
+                                                if(Model[z].student_subject[i].Checked == true)
+                                                {
+                                                    <span class="dispay">
+                                                        @Model[z].student_subject[i].Subject_Name
+                                                    </span>
+                                                }
+                                            }
+                                         }
+                                         @Html.Label("End Date : " , new { @class="en"})
+                                         <span class="en">
+                                            @Model[z].stu_Question.S_Quest_End_Date.ToString("MM/dd/yyyy")
+                                         </span>
+
+                                        <br>
+                                        @Html.Label("Posted Date: " , new { @class="en"})
+                                        <span class="dispay">
+                                            @Model[z].stu_Question.S_Date_Of_Post_Quest.ToString("MM/dd/yyyy")
+                                         </span>
+                                          @Html.Label("Posted Time: " , new { @class="en"})
+                                        <span class="en">
+                                            @Model[z].stu_Question.S_Time_Of_Post_Quest.ToString("hh:mm tt")
+                                         </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                               <div class="col-lg-1">
+                                   <div class="col-xs-7">
+                                       <label class="Answers">@Model[z].stu_Question.S_Quest_Answer_Count</label>
+                                   </div>
+                                   <label>Answers</label>
+                                </div>
+                             </div>
+                        </div>
+                    }
+                    <div>
+                        @Html.PagedListPager(Model, page => Url.Action("BrowseQuest", new { page }), new PagedListRenderOptions() { Display= PagedListDisplayMode.IfNeeded
+                        ,DisplayPageCountAndCurrentLocation=true})
+                    </div>
+                }
+                }
+                </div>
+            </div>
+          </div>
+    }
+

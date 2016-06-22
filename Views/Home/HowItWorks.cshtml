@@ -1,0 +1,112 @@
+﻿
+
+
+@{
+    
+    ViewBag.Title = "HowItWorks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>HowItWorks</h2>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/CSS/LogIn.css" rel="stylesheet" />
+    <link href="~/CSS/font-awesome.css" rel="stylesheet" />
+    <link href="~/CSS/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+    
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+
+    <script src="~/Scripts/countrySelect.js"></script>
+    <script src="~/Scripts/countrySelect.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="~/CSS/HowItWorks.css" rel="stylesheet" />
+
+@section btn
+{              
+}
+<div class="col-lg-12">
+    <div class="container-fluid">
+    <div class="col-sm-3">
+        <div class="row student-tutor">
+        </div>
+        <ul class="nav nav-stacked small-nav">
+        <li><a href="" onclick="Student();">Student</a></li>
+        <li> <a href="" onclick="Tutor();">Tutor</a></li>
+        
+        </ul>
+    </div>
+    <div class="col-sm-8" id="Student" style="display:block;">
+        <h2 class="big-txt margin-top-l">How does Studypool work?</h2>
+        <p>Studypool is an online marketplace that connects students with questions with tutors who can answer them.
+           Using Studypool gives you access to thousands of verified tutors to help you with any question at any time.</p>
+ 
+        <p>Stuck on a frustrating question? Our tutors got you covered!</p>
+        <h4>Step 1</h4>
+        <p>Sign up and post your academic question. Set a time limit and price range. Questions are free to post.</p>
+        <h4>Step 2</h4>
+        <p>Receive bids from verified tutors who wants to help you. Studypool will make a recommendation for which tutor we think is the best overall, but you are also free to make your own choice by comparing reviews, statistics, and profiles.</p>
+        <h4>Step 3</h4>
+        <p>Sit back and relax while your tutor works to explain and help you understand your question. You only pay if you are satisfied with their services.</p>
+        <h3>Studypool features</h3>
+        <h4>ENCRYPTED PRIVACY</h4>
+        <p>Just like the privacy of working with tutors in real life, we give you the option to make your questions and answers 100% private.</p>
+        <h4>CONTROL</h4>
+        <p>Studypool gives you complete control over how you learn. Get help with any question you have. Our tutors are ready to help you on demand, 24/7.</p>
+        <h4>QUALITY HELP</h4>
+        <p>All tutors on our platform go through a strict background check to verify their education and authenticity. As we put a high emphasis on quality, tutors who does not perform well will be removed from the site.</p>
+    </div>
+    <div class="col-sm-8" id="Tutor" style="display:none;">
+        <div class="hiw-header" id="header">
+            <h2 class="light-txt"><span class="big-txt">Tutoring at Studypool</span></h2>
+         </div>
+         <div class="margin-top-m padding-bottom-m">
+              <div>
+                  <p>Earn money by tutoring students online. Simply provide explanations and help to their questions.</p>
+                  <h4>How Does it Work?</h4>
+                  <p>
+                     Sign up and browse questions. Bid on questions you're interested in providing explanations and help for by suggesting a price and delivery time.
+                     If the student would like to work with you, they will pay an advance payment of your requested price which will be held by Studypool while the question remains unsolved.
+                   </p>
+                   <p>Once the student has completed the payment you will be notified, and the tutoring session will begin.</p>
+                   <p>During the session your job is to provide explanations and help the student solve their question within the time limit agreed upon.
+                      Once the student is satisfied, your payment will be released to you.
+                    </p>
+                   </div>
+                </div>s
+         </div>
+</div>
+</div>
+    <div class="col-md-12">
+          <p class ="inside">© 2015 HelpStudent Global Inc</p>
+          <a href="https://www.upwork.com/info/terms/cookie-policy/">Cookie Policy</a>
+</div>
+    <script>
+    $(document).ready(function () {
+
+        function Student()
+        {
+            document.getElementById('Student').style.display = "block";
+            document.getElementById('Tutor').style.display = "none";
+        }
+        function Tutor()
+        {
+            document.getElementById('Student').style.display = "none";
+            document.getElementById('Tutor').style.display = "block";
+        }
+
+    });
+</script>

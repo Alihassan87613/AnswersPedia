@@ -1,0 +1,270 @@
+﻿body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 150%;
+    line-height: 1.42857;
+    color: #333;
+    background-color: #FBFBFB;
+}
+
+.h3, h3 {
+    font-size: 24px;
+    color: #32BD32;
+}
+
+.pageHeader {
+    padding-bottom: 9px;
+    margin: 40px 0px 20px;
+    border-bottom: 1px solid #EEE;
+    padding-top: 50px;
+}
+
+.dess {
+        font-weight: 700;
+        font-size:50px;
+}
+.col-md-4 {
+    width: 29.3333%;
+    border-left: 2px solid #BDC5C4;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #FFF;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+   
+}
+
+.panel-body {
+    padding: 15px;
+    height: 600px;
+    background-color: #FBFBFB;
+    border-bottom: 1px solid #939393;
+    border-right: 1px solid #939393;
+}
+input {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 220px;
+}
+
+
+.col-sm-offset-2 {
+    margin-left: 6.6667%;
+}
+
+.form-horizontal .checkboxT, .form-horizontal .radio {
+    min-height: 27px;
+    margin-left: 2px;
+}
+
+
+.Tutor {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+    padding-right: 20px;
+}
+
+.Student {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 400;
+
+    margin-left: 70px;
+
+}
+
+.col-sm-offset-21 {
+    margin-left: 6.6667%;
+    padding-bottom: 19px;
+    border-bottom: 1px solid #EEE;
+}
+
+.btnccess {
+    color: #FFF;
+    background-color: #32BD32;
+    border-color: #449D44
+}
+.btnccess:hover {
+    color: #FFF;
+    background-color: #29AE29;
+    border-color: #4CAE4C;
+}
+.btn1 {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 70px;
+    height: 40px;
+}
+.botton {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 80px;
+    height: 40px;
+}
+.Email1 {
+    color : red;
+    font-size : 1em ;
+    margin-left:11%;
+
+}
+.Password1 {
+    color : red;
+    font-size : 1em ;
+    margin-left:11%;
+}
+.text-box {
+    height:31px;
+
+}
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.col-md-12 {
+    width: 100%;
+    background-color: #000;
+    height: 150px;
+    margin-top: 10%;
+    margin-bottom: -64px;
+}
+
+.col-md-12 p {
+    color: #32bd32;
+    font-size: 1em;
+    padding-top: 4%;
+    padding-left: 45%;
+    font-weight: 700;
+}
+.col-md-12 a {
+    color: #fff;
+    font-size: 1em;
+    padding-left: 48%;
+    font-weight: 700;
+}
+.checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"], .radio input[type="radio"], .radio-inline input[type="radio"] {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 18px;
+    font-size: 18px;
+    color: #37A000;
+    background-color: #FFF;
+    border: 2px solid #32bd32;
+    position: absolute;
+    margin-left: 0px;
+}
+
+.email-label2 {
+    position: relative;
+}
+
+.email-label2 .fa-envelope {
+    color: #6E6E6E;
+    top: 3px;
+    left: 8px;
+    position: absolute;
+    font-size: 26px;
+    margin-left: 20px;
+}
+.email-label2 .fa-key {
+    color: #6E6E6E;
+    top: 3px;
+    left: 8px;
+    position: absolute;
+    font-size: 26px;
+    margin-left: 20px;
+}
+
+.btn1:focus {
+    outline: none;
+    border-color: #32bd32;
+    box-shadow: 0 0 10px #32bd32;
+}
+.forget {
+    color:#32bd32;
+    font-weight:600;
+    text-decoration:none;
+}
+    .forget:focus {
+        color:#449d44;
+        font-weight:600;
+        text-decoration:none;
+    }
+    .forget:hover {
+        color:#449d44;
+        font-weight:600;
+        text-decoration:none;
+    }
+    .checkbox label, .radio label {
+    min-height: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+    font-weight: 600;
+    color: #32bd32;
+}
+
+.email2 {
+    padding-left: 50px;
+    width: 270px;
+    margin-left: 20px;
+}
+email2:hover {
+    border:2px solid #32bd32; 
+}
+.email2:focus {
+    outline: none;
+    border-color: #32bd32;
+    box-shadow: 0 0 10px #32bd32;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.container {
+    width: 100%;
+    padding-top: 40px;
+
+}
+.desgn {
+    color: #32BD32;
+    font-size: 15px;
+    padding-top: 70px;
+    margin-right: 60px;
+    margin-left: 60px;
+    font-weight: 700;
+}
